@@ -24,15 +24,30 @@ const Footer = () => {
             <div className="social-links-container">
               <div className="follow-us mb-4 ">Follow Us</div>
               <div className="social-links">
-                <Link to="/" className="social-link">
-                  <i className="bi bi-facebook"></i>
-                </Link>
-                <Link to="/" className="social-link">
-                  <i className="bi bi-twitter-x"></i>
-                </Link>
-                <Link to="/" className="social-link">
+                <a
+                  href="https://linkedin.com/in/nexlume-co-463256384/?skipRedirect=true"
+                  className="social-link linkedin-icon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="bi bi-linkedin"></i>
+                </a>
+                <a
+                  href="https://github.com/Nex-Lume"
+                  className="social-link Github-icon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="bi bi-github"></i>
+                </a>
+                <a
+                  href="https://www.instagram.com/nexlume/"
+                  className="social-link Instagram-icon"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <i className="bi bi-instagram"></i>
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -43,12 +58,12 @@ const Footer = () => {
         <div className="row align-items-center">
           <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
             <div className="contact-email">
-              <Link to="/">nexlume.co@gmail.com</Link>
+              <a href="mailto:nexlume.co@gmail.com">nexlume.co@gmail.com</a>
             </div>
           </div>
           <div className="col-md-6 text-center text-md-end">
             <span className="copyright">
-              Nexlume &copy; 2025 All Rights Reserved
+              Nexlume &copy; 2026 All Rights Reserved
             </span>
           </div>
         </div>
