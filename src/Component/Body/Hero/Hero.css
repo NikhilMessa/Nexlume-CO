@@ -201,12 +201,12 @@
 .horizon-line::before {
   content: "";
   position: absolute;
-  bottom: -70%;
+  bottom: -62%;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
   max-width: 2000px;
-  height: 400px;
+  height: clamp(360px, 28vw, 520px);
   background: transparent;
   border-radius: 50%;
   border: 2px solid transparent;
@@ -917,6 +917,12 @@
   .banner-text {
     font-size: 1rem;
   }
+
+  .horizon-line::before {
+    width: min(88%, 2400px);
+    height: clamp(460px, 24vw, 700px);
+    bottom: -56%;
+  }
 }
 
 /* Large Desktops (1440px - 1919px) */
@@ -938,6 +944,12 @@
   .connect-btn {
     font-size: 1.0625rem;
     padding: 1rem 2.25rem;
+  }
+
+  .horizon-line::before {
+    width: 89%;
+    height: clamp(420px, 26vw, 620px);
+    bottom: -58%;
   }
 }
 
