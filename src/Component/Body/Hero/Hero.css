@@ -919,9 +919,16 @@
   }
 
   .horizon-line::before {
-    width: min(88%, 2400px);
-    height: clamp(460px, 24vw, 700px);
-    bottom: -56%;
+    width: min(89%, 2200px);
+    height: clamp(440px, 23vw, 620px);
+    bottom: -54%;
+    border-top-width: 6.5px;
+    filter: brightness(1.22);
+  }
+
+  /* Keep arc center visible; hide bright edge ends */
+  .horizon-line {
+    clip-path: inset(0 14% 0 14%);
   }
 }
 
@@ -948,8 +955,15 @@
 
   .horizon-line::before {
     width: 89%;
-    height: clamp(420px, 26vw, 620px);
-    bottom: -58%;
+    height: clamp(400px, 25vw, 560px);
+    bottom: -55%;
+    border-top-width: 6.5px;
+    filter: brightness(1.2);
+  }
+
+  /* Keep arc center visible; hide bright edge ends */
+  .horizon-line {
+    clip-path: inset(0 12% 0 12%);
   }
 }
 
@@ -972,6 +986,19 @@
   .connect-btn {
     font-size: 1rem;
     padding: 1rem 2rem;
+  }
+
+  .horizon-line::before {
+    width: 89%;
+    height: clamp(380px, 26vw, 500px);
+    bottom: -56%;
+    border-top-width: 6.5px;
+    filter: brightness(1.16);
+  }
+
+  /* Match laptop-style center-only arc on desktop */
+  .horizon-line {
+    clip-path: inset(0 10% 0 10%);
   }
 }
 
@@ -1006,8 +1033,15 @@
   }
 
   .horizon-line::before {
-    width: 90%;
-    height: 380px;
+    width: 92%;
+    height: 360px;
+    bottom: -57%;
+    border-top-width: 6.5px;
+    filter: brightness(1.12);
+  }
+
+  .horizon-line {
+    clip-path: inset(0 3% 0 3%);
   }
 }
 
