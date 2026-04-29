@@ -744,12 +744,6 @@
     flex-shrink: 0;
   }
 
-  /* First 4 cards: 2 per row naturally */
-  .team-grid--seven .team-card:nth-child(5),
-  .team-grid--seven .team-card:nth-child(6) {
-    /* Natural flow for first 4 cards */
-  }
-
   /* Last 3 cards: centered */
   .team-grid--seven .team-card:nth-child(n + 5) {
     width: calc(50% - 12px);
@@ -792,21 +786,21 @@
     font-size: 2.5rem;
   }
 
-  /* Mobile layout: 1 card per row, all full width */
+  /* 768px layout: 2 cards per row, last card centered */
   .team-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
     gap: 20px;
   }
 
   .team-grid--seven {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
   }
 
   .team-grid--seven .team-card {
-    width: 100%;
+    width: calc(50% - 10px);
   }
 
   .team-grid--seven .team-card:nth-child(1),
@@ -819,7 +813,7 @@
     grid-column: auto;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
+    width: calc(50% - 10px);
   }
 
   .team-image-wrapper {
@@ -856,6 +850,18 @@
   .join-team {
     margin-top: 0;
     padding: 60px 24px;
+  }
+}
+
+/* Small mobile: 1 card per row */
+@media (max-width: 600px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-grid--seven .team-card,
+  .team-grid--seven .team-card:nth-child(7) {
+    width: 100%;
   }
 }
 
