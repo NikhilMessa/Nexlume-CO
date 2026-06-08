@@ -9,6 +9,7 @@ import Navbar from "./Component/Navbar/Navbar";
 import Contact from "./Component/Contacts/Contact";
 import Services from "./Component/Service/Service";
 import Team from "./Component/Team/Team";
+import { prefetchTeam } from "./lib/teamCache";
 
 // Lazy load heavy 3D components
 const Projects = lazy(() => import("./Component/Projects/Project"));
@@ -52,6 +53,10 @@ function App() {
       return () => window.removeEventListener("load", handleLoad);
     }
   }, []);
+
+  useEffect(() => {
+    if (!loading) prefetchTeam();
+  }, [loading]);
 
   return (
     <>

@@ -146,37 +146,19 @@
    TEAM GRID
    ============================================ */
 .team-main-container {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(280px, 1fr));
   gap: 32px;
   margin: 0 auto;
 }
 
-.team-grid--seven {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 32px;
-  margin: 0 auto;
-  max-width: 100%;
-}
-
-.team-grid--seven .team-card {
-  flex: 0 0 calc(25% - 24px);
-  min-width: 280px;
-}
-
-/* Second row cards: they will naturally center with justify-content: center */
-.team-grid--seven .team-card:nth-child(5),
-.team-grid--seven .team-card:nth-child(6),
-.team-grid--seven .team-card:nth-child(7) {
-  flex: 0 0 calc(25% - 24px);
+.team-grid--four {
+  grid-template-columns: repeat(4, minmax(240px, 1fr));
 }
 
 /* ============================================
@@ -726,27 +708,10 @@
     margin-bottom: 80px;
   }
 
-  /* Tablet layout: 2 cards per row, 1 centered card in last row */
-  .team-grid {
+  /* Tablet layout: 2 cards per row */
+  .team-grid--four {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
     gap: 24px;
-  }
-
-  .team-grid--seven {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 24px;
-  }
-
-  .team-grid--seven .team-card {
-    width: calc(50% - 12px);
-    flex-shrink: 0;
-  }
-
-  /* Last 3 cards: centered */
-  .team-grid--seven .team-card:nth-child(n + 5) {
-    width: calc(50% - 12px);
   }
 
   .team-image-wrapper {
@@ -786,34 +751,10 @@
     font-size: 2.5rem;
   }
 
-  /* 768px layout: 2 cards per row, last card centered */
-  .team-grid {
+  /* 768px layout: 2 cards per row */
+  .team-grid--four {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
     gap: 20px;
-  }
-
-  .team-grid--seven {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .team-grid--seven .team-card {
-    width: calc(50% - 10px);
-  }
-
-  .team-grid--seven .team-card:nth-child(1),
-  .team-grid--seven .team-card:nth-child(2),
-  .team-grid--seven .team-card:nth-child(3),
-  .team-grid--seven .team-card:nth-child(4),
-  .team-grid--seven .team-card:nth-child(5),
-  .team-grid--seven .team-card:nth-child(6),
-  .team-grid--seven .team-card:nth-child(7) {
-    grid-column: auto;
-    margin-left: auto;
-    margin-right: auto;
-    width: calc(50% - 10px);
   }
 
   .team-image-wrapper {
@@ -855,13 +796,8 @@
 
 /* Small mobile: 1 card per row */
 @media (max-width: 600px) {
-  .team-grid {
+  .team-grid--four {
     grid-template-columns: 1fr;
-  }
-
-  .team-grid--seven .team-card,
-  .team-grid--seven .team-card:nth-child(7) {
-    width: 100%;
   }
 }
 

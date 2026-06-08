@@ -6,6 +6,7 @@ import "./Navbar.css";
 
 import logoImage from "../../assets/logo.png"; // Import the logo image
 import { OptimizedImage } from "../../components/OptimizedImage";
+import { prefetchTeam } from "../../lib/teamCache";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -63,7 +64,12 @@ const Navbar = () => {
 
             {/* Right links */}
             <div className="nav-right">
-              <Link className="nav-link" to="/team">
+              <Link
+                className="nav-link"
+                to="/team"
+                onMouseEnter={prefetchTeam}
+                onTouchStart={prefetchTeam}
+              >
                 TEAM
               </Link>
               <Link className="nav-link" to="/contact">
@@ -125,6 +131,8 @@ const Navbar = () => {
                     <Link
                       className="nav-link text-white py-2"
                       to="/team"
+                      onMouseEnter={prefetchTeam}
+                      onTouchStart={prefetchTeam}
                       onClick={handleLinkClick}
                     >
                       TEAM

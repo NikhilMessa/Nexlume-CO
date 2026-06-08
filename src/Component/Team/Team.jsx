@@ -1,257 +1,110 @@
 import React, { useEffect, useState } from "react";
 import "./Team.css";
 import { Link } from "react-router-dom";
-import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 import API from "../../lib/api";
+import {
+  prefetchTeam,
+  resolveMemberImage,
+  teamCache,
+} from "../../lib/teamCache";
 import { OptimizedImage } from "../../components/OptimizedImage";
-
-const API_BASE = import.meta.env.VITE_API_BASE;
-
-const waitForImageLoad = (src, timeout = 15000) =>
-  new Promise((resolve) => {
-    if (!src) {
-      resolve(true);
-      return;
-    }
-
-    const img = new Image();
-    let settled = false;
-
-    const finish = (ok) => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(timer);
-      resolve(ok);
-    };
-
-    const timer = setTimeout(() => finish(false), timeout);
-    img.onload = () => finish(true);
-    img.onerror = () => finish(false);
-    img.src = src;
-  });
-
-const preloadMemberImages = async (list = []) => {
-  const sources = list.map((member) => member?.image).filter(Boolean);
-  if (!sources.length) return true;
-  const results = await Promise.all(
-    sources.map((src) => waitForImageLoad(src)),
-  );
-  return results.every(Boolean);
-};
-
-// Import images
-import Nikhil from "../../assets/Team/messa.jpg";
-import Sanjit from "../../assets/Team/sanju.jpg";
-import Ravi from "../../assets/Team/ravi.jpg";
-import Aman from "../../assets/Team/aman.jpg";
-import Prajwal from "../../assets/Team/Pk.jpg";
-import Sanath from "../../assets/Team/anna.jpg";
-import Shraddha from "../../assets/Team/Shraddha.jpeg";
 import GroupImage from "../../assets/Team/group-image.jpg";
 import TeamEmailImage from "../../assets/Team/team-email.jpg";
 
-// =========================
-// TEAM DATA (fallback demo)
-// =========================
-const demo = [
-  {
-    image: Nikhil,
-    title: "Nikhil Messa",
-    role: "Tech Lead",
-    handle: "@nikhilmessa",
-    bio: "Leading technical strategy and scalable system architecture.",
-    url: "https://www.linkedin.com/in/nikhil-messa/",
-  },
-  {
-    image: Prajwal,
-    title: "Prajwal Kolure",
-    role: "Creative Director",
-    handle: "@prajwalkolure",
-    bio: "Driving creative vision through impactful design, branding, and visual storytelling.",
-    url: "https://www.linkedin.com/in/prajwal-k-956865328/",
-  },
-  {
-    image: Aman,
-    title: "Aman Mishra",
-    role: "Project Manager",
-    handle: "@amanmishra",
-    bio: "Ensuring smooth execution of projects by managing timelines, teams, and deliverables.",
-    url: "https://www.linkedin.com/in/amanmishra107/",
-  },
-  {
-    image: Ravi,
-    title: "Ravindra Patil",
-    role: "Product Engineer",
-    handle: "@ravindrapatil",
-    bio: "Building end-to-end product features efficiently and scalability.",
-    url: "https://www.linkedin.com/in/ravindra-patil-3a2876250/",
-  },
-  {
-    image: Sanjit,
-    title: "Sanjit Prajapati",
-    role: "UI/UX Specialist",
-    handle: "@sanjitprajapati",
-    bio: "Transforming ideas into stunning digital experiences",
-    url: "https://www.linkedin.com/in/sanjit-prajapati-5420a9222/",
-  },
-  {
-    image: Sanath,
-    title: "Sanath Shetty",
-    role: "Full Stack Developer",
-    handle: "@sanathshetty",
-    bio: "Developing end-to-end solutions with a focus on performance and scalability.",
-    url: "#",
-  },
-  {
-    image: Shraddha,
-    title: "Sharddha Chauhan",
-    role: "Creative Strategist",
-    handle: "@sharddhachauhan",
-    bio: "Using creative strategies for brand growth, enhancing client engagement and reach.",
-    url: "https://www.linkedin.com/in/shraddha-chauhan017-532044223/",
-    imagePosition: "center 42%",
-  },
-];
+const API_BASE = import.meta.env.VITE_API_BASE;
 
-// =========================
-// TEAM CARD COMPONENT
-// =========================
-const TeamCard = ({ items = demo }) => {
-  const hasSevenMembers = items.length === 7;
-
+const TeamMemberCard = ({ member }) => {
   return (
-    <div className={`team-grid ${hasSevenMembers ? "team-grid--seven" : ""}`}>
-      {items.map((member, index) => (
-        <div key={index} className="team-card" data-index={index}>
-          <div className="team-card-inner">
-            <div className="team-image-wrapper">
-              <OptimizedImage
-                src={member.image}
-                alt={member.title}
-                className="team-image"
-                generateSources={false}
-                style={{
-                  "--team-image-position": member.imagePosition || "center 30%",
-                }}
-              />
-              <div className="team-image-overlay"></div>
-            </div>
+    <div className="team-card">
+      <div className="team-card-inner">
+        <div className="team-image-wrapper">
+          <OptimizedImage
+            src={resolveMemberImage(member.image)}
+            alt={member.title}
+            className="team-image"
+            generateSources={false}
+            priority
+            style={{
+              "--team-image-position": member.imagePosition || "center 30%",
+            }}
+          />
+          <div className="team-image-overlay"></div>
+        </div>
 
-            <div className="team-content">
-              <div className="team-header">
-                <h3 className="team-name">{member.title}</h3>
-                <p className="team-role">{member.role}</p>
-              </div>
+        <div className="team-content">
+          <div className="team-header">
+            <h3 className="team-name">{member.title}</h3>
+            <p className="team-role">{member.role}</p>
+          </div>
 
-              {member.bio && <p className="team-bio">{member.bio}</p>}
+          {member.bio && <p className="team-bio">{member.bio}</p>}
 
-              <div className="team-footer">
-                {member.handle && member.url && (
-                  <a
-                    href={member.url}
-                    className="team-handle-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${member.title} LinkedIn profile`}
-                  >
-                    <span className="team-handle">{member.handle}</span>
-                    <FaLinkedin className="linkedin-icon" />
-                  </a>
-                )}
-              </div>
-            </div>
+          <div className="team-footer">
+            {member.handle && member.url && (
+              <a
+                href={member.url}
+                className="team-handle-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${member.title} LinkedIn profile`}
+              >
+                <span className="team-handle">{member.handle}</span>
+                <FaLinkedin className="linkedin-icon" />
+              </a>
+            )}
           </div>
         </div>
-      ))}
+      </div>
     </div>
   );
 };
 
-const TeamCardSkeleton = ({ count = 6 }) => {
+const TeamMemberSkeleton = () => {
   return (
-    <div className="team-grid" aria-hidden="true">
-      {Array.from({ length: count }).map((_, index) => (
-        <div key={index} className="team-card team-card--skeleton">
-          <div className="team-card-inner">
-            <div className="team-image-wrapper team-image-wrapper--skeleton">
-              <span className="team-skeleton team-skeleton-media" />
-            </div>
-            <div className="team-content">
-              <div className="team-header">
-                <span className="team-skeleton team-skeleton-name" />
-                <span className="team-skeleton team-skeleton-role" />
-              </div>
-              <span className="team-skeleton team-skeleton-bio" />
-              <span className="team-skeleton team-skeleton-bio team-skeleton-bio--short" />
-              <div className="team-footer">
-                <span className="team-skeleton team-skeleton-handle" />
-              </div>
-            </div>
+    <div className="team-card team-card--skeleton" aria-hidden="true">
+      <div className="team-card-inner">
+        <div className="team-image-wrapper team-image-wrapper--skeleton">
+          <span className="team-skeleton team-skeleton-media" />
+        </div>
+        <div className="team-content">
+          <div className="team-header">
+            <span className="team-skeleton team-skeleton-name" />
+            <span className="team-skeleton team-skeleton-role" />
+          </div>
+          <span className="team-skeleton team-skeleton-bio" />
+          <span className="team-skeleton team-skeleton-bio team-skeleton-bio--short" />
+          <div className="team-footer">
+            <span className="team-skeleton team-skeleton-handle" />
           </div>
         </div>
-      ))}
+      </div>
     </div>
   );
 };
 
-// =========================
-// MAIN TEAM COMPONENT
-// =========================
 const Team = () => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isTeamLoading, setIsTeamLoading] = useState(true);
-  const [members, setMembers] = useState([]);
+  const [isTeamLoading, setIsTeamLoading] = useState(!teamCache.members);
+  const [members, setMembers] = useState(teamCache.members || []);
 
-  // Fetch team members from backend (fallback to demo on failure)
   useEffect(() => {
     let isMounted = true;
-    const loadTeams = async () => {
-      const teamsAPI = API.main || "http://localhost:5000"; // Port 5000 for teams
-      if (!teamsAPI) {
-        if (isMounted) {
-          setMembers(demo);
-          setIsTeamLoading(false);
-        }
-        return;
-      }
-      try {
-        const res = await fetch(`${teamsAPI}/api/teams`);
 
-        // Check if response is successful
-        if (!res.ok) {
-          console.warn(`Teams API returned ${res.status}, using demo data`);
-          if (isMounted) {
-            setMembers(demo);
-            await preloadMemberImages(demo);
-          }
-          return;
-        }
-
-        const json = await res.json();
-        const list = Array.isArray(json) ? json : json.data || [];
-        const finalMembers = list.length ? list : demo;
-
+    prefetchTeam()
+      .then((list) => {
         if (!isMounted) return;
-        setMembers(finalMembers);
-
-        const imagesLoaded = await preloadMemberImages(finalMembers);
-        if (!isMounted) return;
-
-        if (!imagesLoaded) {
-          console.warn("Some team images are not loaded yet.");
-        }
-      } catch (err) {
-        console.error("Failed to load teams:", err);
-        if (isMounted) {
-          setMembers(demo);
-          await preloadMemberImages(demo);
-        }
-      } finally {
+        setMembers(list);
+      })
+      .catch((e) => {
+        console.error("Failed to load teams:", e.message);
+        if (isMounted) setMembers([]);
+      })
+      .finally(() => {
         if (isMounted) setIsTeamLoading(false);
-      }
-    };
-    loadTeams();
+      });
+
     return () => {
       isMounted = false;
     };
@@ -280,7 +133,6 @@ const Team = () => {
         body: JSON.stringify({ email }),
       });
 
-      // Check response status first before parsing JSON
       if (!response.ok) {
         console.error(`Enroll API returned ${response.status}`);
         const errorText = await response.text();
@@ -290,7 +142,6 @@ const Team = () => {
           const errorData = JSON.parse(errorText);
           errorMessage = errorData.message || errorMessage;
         } catch {
-          // If response is HTML or not JSON, use default message
           errorMessage = `Server error: ${response.status} ${response.statusText}`;
         }
 
@@ -298,9 +149,9 @@ const Team = () => {
         return;
       }
 
-      const data = await response.json();
+      await response.json();
       alert("Email sent successfully!");
-      setEmail(""); // Clear the input on success
+      setEmail("");
     } catch (error) {
       console.error("Fetch failed:", error);
       alert("Network error");
@@ -308,6 +159,7 @@ const Team = () => {
       setIsLoading(false);
     }
   };
+
   return (
     <>
       <section id="team" className="team-body">
@@ -326,7 +178,7 @@ const Team = () => {
 
         <div className="team-stats">
           <div className="stat-item">
-            <div className="stat-number">7</div>
+            <div className="stat-number">{members.length}</div>
             <div className="stat-label">Team Members</div>
           </div>
           <div className="stat-item">
@@ -340,11 +192,18 @@ const Team = () => {
         </div>
 
         <div id="teams" className="team-main-container">
-          {isTeamLoading ? (
-            <TeamCardSkeleton count={7} />
-          ) : (
-            <TeamCard items={members.length ? members : demo} />
-          )}
+          <div className="team-grid team-grid--four">
+            {isTeamLoading
+              ? Array.from({ length: 8 }).map((_, index) => (
+                  <TeamMemberSkeleton key={`skeleton-${index}`} />
+                ))
+              : members.map((member, index) => (
+                  <TeamMemberCard
+                    key={member._id || index}
+                    member={member}
+                  />
+                ))}
+          </div>
         </div>
       </section>
 
