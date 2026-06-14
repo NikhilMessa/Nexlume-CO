@@ -1,23 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Contact.css";
-
+import { toast } from "react-toastify";
 const defaultSocialLinks = [
   {
     id: "1",
-    name: "X",
-    iconSrc:
-      "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg",
-    href: "https://www.instagram.com/nexlume",
-  },
-  {
-    id: "2",
     name: "Instagram",
     iconSrc:
       "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg",
     href: "https://www.instagram.com/nexlume",
   },
   {
-    id: "3",
+    id: "2",
     name: "LinkedIn",
     iconSrc:
       "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg",
@@ -26,6 +19,18 @@ const defaultSocialLinks = [
 ];
 
 const API_BASE = import.meta.env.VITE_API_BASE;
+
+const countryOptions = [
+  { code: "+1", label: "USA", placeholder: "1234567890", maxLength: 10 },
+  { code: "+44", label: "GBR", placeholder: "7123456789", maxLength: 10 },
+  { code: "+61", label: "AUS", placeholder: "412345678", maxLength: 9 },
+  { code: "+91", label: "IND", placeholder: "1234567890", maxLength: 10 },
+  { code: "+65", label: "SGP", placeholder: "91234567", maxLength: 8 },
+  { code: "+81", label: "JPN", placeholder: "09012345678", maxLength: 11 },
+  { code: "+49", label: "DEU", placeholder: "15123456789", maxLength: 11 },
+  { code: "+33", label: "FRA", placeholder: "0612345678", maxLength: 10 },
+  { code: "+86", label: "CHN", placeholder: "13800138000", maxLength: 11 },
+];
 
 const ContactSection = ({
   title = "We can turn your dream project into reality",
@@ -43,6 +48,14 @@ const ContactSection = ({
     services: [],
     message: "",
   });
+
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const businessNameRef = useRef(null);
+  const phoneRef = useRef(null);
+  // const budgetRef = useRef(null);
+  const servicesRef = useRef(null);
+  const messageRef = useRef(null);
 
   // Auto detect country code based on browser locale
   useEffect(() => {
@@ -70,8 +83,26 @@ const ContactSection = ({
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (name === "countryCode") {
+      const newCountry = countryOptions.find((c) => c.code === value);
+      setFormData((prev) => ({
+        ...prev,
+        countryCode: value,
+        phone: prev.phone.slice(0, newCountry?.maxLength || 10),
+      }));
+      return;
+    }
+
+    const normalizedValue = name === "phone" ? value.replace(/\D/g, "") : value;
+    setFormData((prev) => ({ ...prev, [name]: normalizedValue }));
   };
+
+  // derive phone placeholder and maxLength based on selected country
+  const currentCountry = countryOptions.find(
+    (c) => c.code === formData.countryCode,
+  );
+  const phonePlaceholder = currentCountry?.placeholder || "1234567890";
+  const phoneMaxLength = currentCountry?.maxLength || 10;
 
   const handleCheckboxChange = (service, checked) => {
     setFormData((prev) => {
@@ -82,8 +113,75 @@ const ContactSection = ({
     });
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const focusField = (ref) => {
+    if (ref?.current) {
+      ref.current.focus();
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formData.name.trim()) {
+      toast.warning("Full name is required.");
+      focusField(nameRef);
+      return;
+    }
+
+    if (!formData.email.trim()) {
+      toast.warning("Email address is required.");
+      focusField(emailRef);
+      return;
+    }
+
+    if (!validateEmail(formData.email)) {
+      toast.warning("Please enter a valid email address.");
+      focusField(emailRef);
+      return;
+    }
+
+    if (!formData.businessName.trim()) {
+      toast.warning("Company name is required.");
+      focusField(businessNameRef);
+      return;
+    }
+
+    if (!formData.phone.trim()) {
+      toast.warning("Phone number is required.");
+      focusField(phoneRef);
+      return;
+    }
+
+    const cleanedPhone = formData.phone.replace(/\D/g, "");
+    const requiredPhoneLength = phoneMaxLength || 10;
+    if (cleanedPhone.length < requiredPhoneLength) {
+      toast.warning("Please enter a valid phone number.");
+      focusField(phoneRef);
+      return;
+    }
+
+    // if (!formData.budget) {
+    //   toast.warning("Please select your budget range.");
+    //   focusField(budgetRef);
+    //   return;
+    // }
+
+    if (!formData.services || formData.services.length === 0) {
+      toast.warning("Please select at least one service.");
+      if (servicesRef?.current) servicesRef.current.focus();
+      return;
+    }
+
+    if (!formData.message.trim()) {
+      toast.warning("Please tell us about your project.");
+      focusField(messageRef);
+      return;
+    }
 
     try {
       const response = await fetch(`${API_BASE}/api/contact/submit`, {
@@ -95,12 +193,12 @@ const ContactSection = ({
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.message || "Something went wrong. Please try again.");
+        toast.warning(data.message || "Something went wrong. Please try again.");
         return;
       }
 
       // ✅ FREE beginner setup message
-      alert("Thanks for contacting NexLume. Our team will reach out soon.");
+      toast.success("Thanks for contacting NexLume. Our team will reach out soon.");
 
       // OPTIONAL: reset form
       setFormData({
@@ -116,20 +214,20 @@ const ContactSection = ({
       });
     } catch (error) {
       console.error("Contact submit failed:", error);
-      alert("Network error. Please try again later.");
+      toast.error("Network error. Please try again later.");
     }
   };
 
   const serviceOptions = [
-    "Website",
-    "Mobile App",
-    "Web App",
-    "E-Commerce",
-    "Brand Identity",
-    "SEO",
-    "Social Media Marketing",
-    "Brand Strategy & Consulting",
-    "Other",
+    "Website Design",
+    "Web Development",
+    "E-commerce Website",
+    "Landing Page",
+    "UI/UX Design",
+    "SEO & Performance",
+    "Website Maintenance",
+    "Branding for Web",
+    "Conversion Optimization",
   ];
 
   const budgetOptions = [
@@ -200,7 +298,7 @@ const ContactSection = ({
 
           {/* Right Column - Form */}
           <div className="contact-form-column">
-            <form onSubmit={handleSubmit} className="contact-form">
+            <form onSubmit={handleSubmit} noValidate  className="contact-form">
               <div className="form-section">
                 <h3 className="form-section-title">Your Information</h3>
 
@@ -214,6 +312,7 @@ const ContactSection = ({
                       value={formData.name}
                       onChange={handleChange}
                       required
+                      ref={nameRef}
                     />
                   </div>
 
@@ -227,6 +326,7 @@ const ContactSection = ({
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      ref={emailRef}
                     />
                   </div>
                 </div>
@@ -241,23 +341,39 @@ const ContactSection = ({
                       value={formData.businessName}
                       onChange={handleChange}
                       required
+                      ref={businessNameRef}
                     />
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="phone">Phone Number</label>
                     <div className="phone-input-group">
-                      <span className="country-code">
-                        {formData.countryCode}
-                      </span>
+                      <select
+                        id="countryCode"
+                        name="countryCode"
+                        value={formData.countryCode}
+                        onChange={handleChange}
+                        className="country-code-select"
+                        aria-label="Country calling code"
+                      >
+                        {countryOptions.map((country) => (
+                          <option key={country.code} value={country.code}>
+                            {country.label} {country.code}
+                          </option>
+                        ))}
+                      </select>
                       <input
                         id="phone"
                         name="phone"
                         type="tel"
-                        placeholder="1234567890"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        placeholder={phonePlaceholder}
                         value={formData.phone}
                         onChange={handleChange}
                         required
+                        maxLength={phoneMaxLength}
+                        ref={phoneRef}
                       />
                     </div>
                   </div>
@@ -289,6 +405,7 @@ const ContactSection = ({
                     value={formData.budget}
                     onChange={handleChange}
                     required
+                    // ref={budgetRef}
                   >
                     <option value="">Select your budget</option>
                     {budgetOptions.map((b) => (
@@ -301,7 +418,7 @@ const ContactSection = ({
 
                 <div className="form-group full-width">
                   <label>What services interest you?</label>
-                  <div className="services-checkboxes">
+                  <div className="services-checkboxes" ref={servicesRef} tabIndex={-1}>
                     {serviceOptions.map((service) => (
                       <label key={service} className="checkbox-label">
                         <input
@@ -327,6 +444,7 @@ const ContactSection = ({
                     onChange={handleChange}
                     required
                     rows="6"
+                    ref={messageRef}
                   />
                 </div>
               </div>

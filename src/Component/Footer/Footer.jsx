@@ -4,68 +4,72 @@ import logoImage from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { OptimizedImage } from "../../components/OptimizedImage";
 
+const socialLinks = [
+  {
+    id: "linkedin",
+    href: "https://linkedin.com/in/nexlume-co-463256384/?skipRedirect=true",
+    label: "LinkedIn",
+    icon: "bi-linkedin",
+  },
+  {
+    id: "github",
+    href: "https://github.com/Nex-Lume",
+    label: "GitHub",
+    icon: "bi-github",
+  },
+  {
+    id: "instagram",
+    href: "https://www.instagram.com/nexlume/",
+    label: "Instagram",
+    icon: "bi-instagram",
+  },
+];
+
 const Footer = () => {
   return (
-    <footer className="footer py-5">
-      <div className="container">
-        <div className="row align-items-center mb-4">
-          <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-            <Link to="/" className="footer-logo-link">
+    <footer className="footer">
+      <div className="footer-inner">
+        <div className="footer-top">
+          <Link to="/" className="footer-logo-link" aria-label="Go to Nexlume homepage">
+            <div className="footer-brand">
               <OptimizedImage
                 src={logoImage}
-                alt="Nexlume"
+                alt="Nexlume logo"
                 className="footer-logo"
                 priority
                 generateSources={false}
               />
-            </Link>
-          </div>
-          <div className="col-md-6 text-center text-md-end">
-            <div className="social-links-container">
-              <div className="follow-us mb-4 ">Follow Us</div>
-              <div className="social-links">
+            </div>
+          </Link>
+
+          <div className="footer-social">
+            <p className="follow-us">Follow Us</p>
+            <div className="social-links">
+              {socialLinks.map((link) => (
                 <a
-                  href="https://linkedin.com/in/nexlume-co-463256384/?skipRedirect=true"
-                  className="social-link linkedin-icon"
+                  key={link.id}
+                  href={link.href}
+                  className="social-link"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={`Follow Nexlume on ${link.label}`}
                 >
-                  <i className="bi bi-linkedin"></i>
+                  <i className={`bi ${link.icon}`} aria-hidden="true" />
                 </a>
-                <a
-                  href="https://github.com/Nex-Lume"
-                  className="social-link Github-icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i className="bi bi-github"></i>
-                </a>
-                <a
-                  href="https://www.instagram.com/nexlume/"
-                  className="social-link Instagram-icon"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i className="bi bi-instagram"></i>
-                </a>
-              </div>
+              ))}
             </div>
           </div>
         </div>
 
         <hr className="footer-divider" />
 
-        <div className="row align-items-center">
-          <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-            <div className="contact-email">
-              <a href="mailto:nexlume.co@gmail.com">nexlume.co@gmail.com</a>
-            </div>
+        <div className="footer-bottom">
+          <div className="contact-email">
+            <a href="mailto:nexlume.co@gmail.com">nexlume.co@gmail.com</a>
           </div>
-          <div className="col-md-6 text-center text-md-end">
-            <span className="copyright">
-              Nexlume &copy; 2026 All Rights Reserved
-            </span>
-          </div>
+          <span className="copyright">
+            Nexlume &copy; 2026 All Rights Reserved
+          </span>
         </div>
       </div>
     </footer>

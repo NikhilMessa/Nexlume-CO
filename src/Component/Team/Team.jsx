@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Team.css";
 import { Link } from "react-router-dom";
 import { FaLinkedin } from "react-icons/fa";
@@ -9,7 +11,6 @@ import {
   teamCache,
 } from "../../lib/teamCache";
 import { OptimizedImage } from "../../components/OptimizedImage";
-import GroupImage from "../../assets/Team/group-image.jpg";
 import TeamEmailImage from "../../assets/Team/team-email.jpg";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
@@ -112,13 +113,13 @@ const Team = () => {
 
   const handleSubmit = async () => {
     if (!email) {
-      alert("Please enter your email address");
+      toast.warning("Please enter your email address");
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      alert("Please enter a valid email address");
+      toast.warning("Please enter a valid email address");
       return;
     }
 
@@ -145,16 +146,16 @@ const Team = () => {
           errorMessage = `Server error: ${response.status} ${response.statusText}`;
         }
 
-        alert(errorMessage);
+        toast.error(errorMessage);
         return;
       }
 
       await response.json();
-      alert("Email sent successfully!");
+      toast.success("Email sent successfully!");
       setEmail("");
     } catch (error) {
       console.error("Fetch failed:", error);
-      alert("Network error");
+      toast.error("Network error");
     } finally {
       setIsLoading(false);
     }
@@ -209,7 +210,7 @@ const Team = () => {
 
       <section className="about-us-section">
         <div className="about-us-container">
-          <div className="about-us-content">
+          <div className="about-us-intro">
             <div className="about-us-badge">About Us</div>
             <h2 className="about-us-title">
               Building the <span className="gradient-text">Future</span> of
@@ -229,35 +230,64 @@ const Team = () => {
               life through custom web applications, mobile solutions, and
               stunning digital experiences.
             </p>
-            <div className="about-us-values">
-              <div className="value-item">
-                <div className="value-icon">🎯</div>
+          </div>
+
+          <div className="about-us-values">
+            <div className="value-item">
+              <div className="value-icon">🎯</div>
+              <div className="value-item-content">
                 <h3>Mission-Driven</h3>
                 <p>
                   Empowering businesses through innovative digital solutions
                 </p>
               </div>
-              <div className="value-item">
-                <div className="value-icon">💡</div>
+            </div>
+            <div className="value-item">
+              <div className="value-icon">💡</div>
+              <div className="value-item-content">
                 <h3>Innovation First</h3>
                 <p>
                   Embracing cutting-edge technologies and creative approaches
                 </p>
               </div>
-              <div className="value-item">
-                <div className="value-icon">🤝</div>
+            </div>
+            <div className="value-item">
+              <div className="value-icon">🤝</div>
+              <div className="value-item-content">
                 <h3>Client-Centric</h3>
                 <p>Your success is our success, always</p>
               </div>
             </div>
-          </div>
-          <div className="about-us-image">
-            <OptimizedImage
-              src={GroupImage}
-              alt="NexLume Team"
-              className="about-group-image"
-              generateSources={false}
-            />
+            <div className="value-item">
+              <div className="value-icon">🚀</div>
+              <div className="value-item-content">
+                <h3>Product-Based</h3>
+                <p>
+                  Building scalable products that solve real problems and grow
+                  with your users
+                </p>
+              </div>
+            </div>
+            <div className="value-item">
+              <div className="value-icon">🎨</div>
+              <div className="value-item-content">
+                <h3>Design-Led</h3>
+                <p>
+                  Crafting bold, intuitive experiences where aesthetics meet
+                  usability
+                </p>
+              </div>
+            </div>
+            <div className="value-item">
+              <div className="value-icon">📈</div>
+              <div className="value-item-content">
+                <h3>Built to Scale</h3>
+                <p>
+                  Engineering architecture that grows seamlessly with your
+                  ambitions
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

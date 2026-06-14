@@ -2,7 +2,8 @@ import "./App.css";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { RingLoader } from "react-spinners";
 import { useState, useEffect, Suspense, lazy } from "react";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Home from "./Home";
 import Footer from "./Component/Footer/Footer";
 import Navbar from "./Component/Navbar/Navbar";
@@ -100,6 +101,7 @@ function App() {
             <Route path="/team" element={<Team />} />
           </Routes>
           <Footer />
+          <ToastContainer position="top-right" autoClose={3000} />
         </>
       )}
     </>
