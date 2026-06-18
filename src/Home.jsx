@@ -12,17 +12,17 @@ const Home = () => {
   useEffect(() => {
     const elements = document.querySelectorAll(".home-container > *");
 
-    const observer = new IntersectionObserver(
+ const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
-          } else {
-            entry.target.classList.remove("visible");
+            observer.unobserve(entry.target); // ✅ stop watching once visible — never hides again
           }
+          // ✅ removed the else clause that was removing "visible" class
         });
       },
-      { threshold: 0.2 },
+      { threshold: 0.1 }, // ✅ lowered from 0.2 so it triggers earlier on mobile
     );
 
     elements.forEach((el) => observer.observe(el));

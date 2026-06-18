@@ -176,9 +176,9 @@ const ProjectsSection = () => {
               {/* Mobile Layout: Video First with Overlay Content */}
               <div className="block lg:hidden">
                 {/* Video Container with Better Styling */}
-                <div className="relative w-full aspect-[9/12] overflow-hidden bg-black">
+                <div className="relative w-full aspect-[16/9] overflow-hidden bg-black">
                   <video
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-contain bg-black"
                     autoPlay
                     loop
                     muted
@@ -229,42 +229,28 @@ const ProjectsSection = () => {
                   </p>
 
                   {/* Action Area */}
-                  <div className="flex gap-3">
-                    <button
-                      onClick={() => handleViewProject(project.id)}
-                      className="flex-1 group/btn inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold text-white bg-gradient-to-r from-red-600 to-red-700 rounded-lg transition-all duration-300 hover:from-red-700 hover:to-red-800 hover:shadow-lg hover:shadow-red-500/40 active:scale-95"
-                    >
-                      <span>EXPLORE</span>
-                      <svg
-                        className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                 {/* Action Area - Mobile Only: centered, no heart */}
+                    <div className="flex justify-center">
+                      <button
+                        onClick={() => handleViewProject(project.id)}
+                        className="w-full group/btn inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold text-white bg-gradient-to-r from-red-600 to-red-700 rounded-lg transition-all duration-300 hover:from-red-700 hover:to-red-800 hover:shadow-lg hover:shadow-red-500/40 active:scale-95"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2.5}
-                          d="M13 7l5 5m0 0l-5 5m5-5H6"
-                        />
-                      </svg>
-                    </button>
-                    <button className="px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300 border border-white/10">
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
+                        <span>EXPLORE</span>
+                        <svg
+                          className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2.5}
+                            d="M13 7l5 5m0 0l-5 5m5-5H6"
+                          />
+                        </svg>
+                      </button>
+                    </div>
                 </div>
               </div>
 
@@ -324,10 +310,10 @@ const ProjectsSection = () => {
                 </div>
 
                 {/* Right Column - Video Preview with Overlay */}
-                <div className="relative rounded-xl overflow-hidden border border-red-500/20 group">
-                  <div className="relative w-full h-full min-h-[500px]">
+                <div className="relative rounded-xl overflow-hidden border border-red-500/20 group min-h-[400px]">
+                 <div className="relative w-full min-h-[400px] h-full">
                     <video
-                      className="absolute inset-0 w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-contain bg-black"
                       autoPlay
                       loop
                       muted

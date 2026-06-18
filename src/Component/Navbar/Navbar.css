@@ -49,11 +49,17 @@
   height: 24px;
   margin: 0 2rem;
   transition: opacity 0.3s ease;
+  width: auto;           /* add this */
+  min-width: 100px;      /* add this — reserves space while loading */
+  object-fit: contain; 
 }
 
 .logo-img-mobile {
   height: 20px;
   margin: 8px;
+   width: auto;           /* add this */
+  min-width: 80px;       /* add this */
+  object-fit: contain;   /* add this */
 }
 
 /* Desktop Navigation */

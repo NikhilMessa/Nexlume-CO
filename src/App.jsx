@@ -44,7 +44,7 @@ function App() {
 
   useEffect(() => {
     const handleLoad = () => {
-      setTimeout(() => setLoading(false), 3000);
+       setLoading(false);
     };
 
     if (document.readyState === "complete") {

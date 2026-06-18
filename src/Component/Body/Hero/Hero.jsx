@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useMemo } from "react";
 import { ArrowRight, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import profileImage from "../../../assets/Team/aman.jpg";
+// import profileImage from "../../../assets/Team/aman.jpg";
 import "./Hero.css";
 
 export default function Hero() {

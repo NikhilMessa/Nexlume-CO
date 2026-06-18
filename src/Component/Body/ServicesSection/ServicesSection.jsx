@@ -112,8 +112,8 @@ const ServicesSection = () => {
                 </div>
 
                 {/* Header Section */}
-                <div className="flex items-start justify-between mb-6 relative z-10">
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start justify-between mb-6 relative z-10 gap-2">
+                    <div className="flex items-start gap-3 flex-1 min-w-0">
                     <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl backdrop-blur-sm transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
                       <i
                         className={`fa-solid ${service.icon} text-2xl text-white`}
@@ -128,9 +128,9 @@ const ServicesSection = () => {
                       </h3>
                     </div>
                   </div>
-                  <span className="px-3.5 py-2 text-[10px] font-medium text-gray-300 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm">
-                    Ready to build
-                  </span>
+                      <span className="flex-shrink-0 self-start -mr-3 px-3 py-1.5 text-[10px] font-medium text-gray-300 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm whitespace-nowrap">
+                      Ready to build
+                    </span>
                 </div>
 
                 {/* Description */}

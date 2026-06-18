@@ -53,12 +53,13 @@ const Navbar = () => {
             <div className="nav-center">
               <Link to="/" className="navbar-brand">
                 <OptimizedImage
-                  src={logoImage}
-                  alt="NEXLUME Logo"
-                  className="logo-img"
-                  priority
-                  generateSources={false}
-                />
+                      src={logoImage}
+                      alt="NEXLUME Logo"
+                      className="logo-img"
+                      priority
+                     fetchPriority="high"
+                      generateSources={false}
+                    />
               </Link>
             </div>
 

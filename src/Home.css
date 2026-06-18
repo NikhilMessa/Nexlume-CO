@@ -65,3 +65,13 @@
     background-position: 1000px 0;
   }
 }
+/* Add at bottom of Home.css */
+.home-container > * {
+  background-color: #000000; /* prevents black gaps between sections */
+}
+
+/* If you have opacity/transform animations on sections, 
+   make sure they default to visible as fallback */
+.home-container > *:not([class*="fade"]) {
+  opacity: 1 !important;
+}
