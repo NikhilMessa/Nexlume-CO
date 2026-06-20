@@ -63,7 +63,7 @@ export default function Hero() {
                 >
                   Coming Soon
                 </span>
-                <span className="banner-text">Nextnode is launching soon!</span>
+                <span className="banner-text">NexLume is launching soon!</span>
                 <ArrowRight
                   size={16}
                   className="banner-arrow"

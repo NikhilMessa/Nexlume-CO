@@ -431,16 +431,16 @@ const ProjectCard = ({ project, index }) => {
                   className="project-link btn btn-danger rounded-pill px-4 py-2 d-inline-flex align-items-center justify-content-center gap-2"
                 >
                   <span>View project</span>
-                  <span className="project-link-arrow">↗</span>
+                  <span className="project-link-arrow">→</span>
                 </Link>
                 <span className="project-blurb d-none d-md-inline">
                   {project?.subtitle?.split(".")[0]}
                 </span>
               </div>
 
-              <span className="project-mobile-footnote d-lg-none">
+              {/* <span className="project-mobile-footnote d-lg-none">
                 Explore Case Study →
-              </span>
+              </span> */}
             </div>
           </div>
 

@@ -943,7 +943,7 @@ const Services = () => {
       id: 2,
       question: "How fast can we deliver?",
       answer:
-        "Websites: 7-14 days, Android Apps: 3-6 weeks, Logos: 2-3 days. We balance speed and quality for exceptional results.",
+        "Websites: 6-8 weeks, Android Apps: 3-6 months, Logos: 2-3 days. We balance speed and quality for exceptional results.",
     },
     {
       id: 3,
