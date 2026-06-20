@@ -94,6 +94,10 @@
   overflow-x: hidden;
   max-width: 100%;
 }
+.hero-section .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
 .hero-section::after {
   content: "";
   position: absolute;
@@ -710,6 +714,18 @@
 /* --------------------------------------------
       Responsive Design
       -------------------------------------------- */
+
+@media (min-width: 2560px) {
+  .horizon-line {
+    clip-path: inset(0 20% 0 20%);
+    overflow: hidden;
+  }
+
+  .horizon-line::before {
+    box-shadow: none; /* ← removes 700px spread */
+    width: 80%;
+  }
+}
 /* Laptop L fix */
 @media (min-width: 1024px) and (max-width: 1440px) {
   .horizon-line {
@@ -1000,6 +1016,7 @@
     bottom: -54%;
     border-top-width: 6.5px;
     filter: brightness(1.22);
+    box-shadow: none;
   }
 
   /* Keep arc center visible; hide bright edge ends */

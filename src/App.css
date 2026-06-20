@@ -117,13 +117,13 @@
 }
 
 * {
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scrollbar-color: #c80000 #0a0a0a;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+   width: 0px; /* ← was 6px */
 }
 
 ::-webkit-scrollbar-track {
