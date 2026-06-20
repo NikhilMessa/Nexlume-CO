@@ -264,22 +264,26 @@ const waitForImageLoad = (src, timeout = 15000) =>
     img.src = src;
   });
 
-const preloadProjectImages = async (list = []) => {
-  const sources = list
-    .map((project) => project?.image || project?.screenshots?.[0] || "")
-    .filter(Boolean);
+// const preloadProjectImages = async (list = []) => {
+//   const sources = list
+//     .map((project) => project?.image || project?.screenshots?.[0] || "")
+//     .filter(Boolean);
 
-  if (!sources.length) return true;
+//   if (!sources.length) return true;
 
-  const results = await Promise.all(
-    sources.map((src) => waitForImageLoad(src)),
-  );
-  return results.every(Boolean);
+//   const results = await Promise.all(
+//     sources.map((src) => waitForImageLoad(src)),
+//   );
+//   return results.every(Boolean);
+// };
+const optimizeCloudinaryUrl = (url) => {
+  if (!url || !url.includes('cloudinary.com')) return url;
+  return url.replace('/upload/', '/upload/f_auto,q_auto,w_800/');
 };
-
 const ProjectCard = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [, setActiveId] = useState(null); // keep setter only (fix)
+  const [, setActiveId] = useState(null);
+  const [expanded, setExpanded] = useState(false); // ← add this
   const refs = useRef([]);
 
   useEffect(() => {
@@ -324,11 +328,23 @@ const ProjectCard = ({ project, index }) => {
               <div className="project-mobile-divider d-lg-none" />
 
               <p className="project-mobile-summary d-lg-none mb-0">
-                {Array.isArray(project.description) &&
-                project.description.length
-                  ? project.description[0]
-                  : project?.subtitle?.split(".")[0]}
-              </p>
+                  {Array.isArray(project.description) && project.description.length
+                    ? expanded
+                      ? project.description[0]
+                      : `${project.description[0]?.slice(0, 100)}...`
+                    : project?.subtitle?.split(".")[0]}
+                  {Array.isArray(project.description) && project.description[0]?.length > 100 && (
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault(); // prevent card navigation
+                        setExpanded(!expanded);
+                      }}
+                      className="read-more-btn d-lg-none ms-1"
+                    >
+                      {expanded ? "read less" : "read more"}
+                    </button>
+                  )}
+                </p>
 
               <ul className="project-features list-unstyled d-none d-md-grid gap-2">
                 {(project.description || []).map((point, idx) => (
@@ -381,6 +397,7 @@ const ProjectCard = ({ project, index }) => {
                           alt={tag}
                           className="tech-icon"
                           loading="lazy"
+                          decoding="async" // ← add this
                           onError={(e) => {
                             console.warn(
                               `Icon failed to load for: ${tag}`,
@@ -443,11 +460,12 @@ const ProjectCard = ({ project, index }) => {
                   state={project}
                   className="d-block w-100 h-100"
                 >
-                  <OptimizedImage
-                    src={project.image}
-                    alt={project.title}
-                    className="project-image w-100 h-100"
-                  />
+                <OptimizedImage
+                  src={optimizeCloudinaryUrl(project.image)}
+                  alt={project.title}
+                  className="project-image w-100 h-100"
+                  loading={index === 0 ? "eager" : "lazy"} /* ← eager only for first card */
+                />
                 </Link>
               </div>
               <div className="project-media-caption">
@@ -528,32 +546,31 @@ export default function Projects() {
   useEffect(() => {
     let isMounted = true;
 
-    const loadProjects = async () => {
-      try {
-        const res = await fetch(`${API.main}/api/projects`);
-        if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
+       const loadProjects = async () => {
+  try {
+    const cached = sessionStorage.getItem("nexlume_projects");
+    if (cached) {
+      setProjects(JSON.parse(cached));
+      setIsLoading(false);
+      return;
+    }
 
-        const json = await res.json();
-        const list = Array.isArray(json) ? json : json.data || [];
-        if (!isMounted) return;
+    const res = await fetch(`${API.main}/api/projects`);
+    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
 
-        setProjects(list);
+    const json = await res.json();
+    const list = Array.isArray(json) ? json : json.data || [];
+    if (!isMounted) return;
 
-        const imagesLoaded = await preloadProjectImages(list.slice(0, 6));
-        if (!isMounted) return;
-
-        if (!imagesLoaded) {
-          console.warn("Some project images are not loaded yet.");
-        }
-      } catch (e) {
-        console.error("❌ Failed to load projects:", e.message);
-        if (isMounted) setProjects([]);
-      } finally {
-        if (isMounted) setIsLoading(false);
-      }
-    };
+    sessionStorage.setItem("nexlume_projects", JSON.stringify(list));
+    setProjects(list);
+  } catch (e) {
+    console.error("❌ Failed to load projects:", e.message);
+    if (isMounted) setProjects([]);
+  } finally {
+    if (isMounted) setIsLoading(false);
+  }
+};
 
     loadProjects();
 

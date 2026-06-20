@@ -599,6 +599,163 @@ const getCreativeIcon = (type) => {
         />
       </svg>
     ),
+    "Product Development": (
+      <svg viewBox="0 0 100 100" className="creative-icon">
+        <defs>
+          <linearGradient
+            id="productDevGrad"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
+            <stop
+              offset="0%"
+              style={{ stopColor: "#0ea5e9", stopOpacity: 1 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: "#6366f1", stopOpacity: 1 }}
+            />
+          </linearGradient>
+          <linearGradient
+            id="productDevGrad2"
+            x1="0%"
+            y1="100%"
+            x2="100%"
+            y2="0%"
+          >
+            <stop
+              offset="0%"
+              style={{ stopColor: "#38bdf8", stopOpacity: 0.5 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: "#818cf8", stopOpacity: 0.5 }}
+            />
+          </linearGradient>
+        </defs>
+        {/* Product layers - MVP to launch stages */}
+        <rect
+          x="22"
+          y="58"
+          width="56"
+          height="18"
+          rx="4"
+          fill="url(#productDevGrad2)"
+          opacity="0.85"
+        />
+        <rect
+          x="22"
+          y="58"
+          width="56"
+          height="18"
+          rx="4"
+          fill="none"
+          stroke="rgba(255,255,255,0.5)"
+          strokeWidth="1.5"
+        />
+        <rect
+          x="28"
+          y="44"
+          width="44"
+          height="16"
+          rx="3"
+          fill="url(#productDevGrad2)"
+          opacity="0.7"
+        />
+        <rect
+          x="28"
+          y="44"
+          width="44"
+          height="16"
+          rx="3"
+          fill="none"
+          stroke="rgba(255,255,255,0.6)"
+          strokeWidth="1.5"
+        />
+        <rect
+          x="34"
+          y="32"
+          width="32"
+          height="14"
+          rx="3"
+          fill="url(#productDevGrad)"
+          opacity="0.95"
+        />
+        <rect
+          x="34"
+          y="32"
+          width="32"
+          height="14"
+          rx="3"
+          fill="none"
+          stroke="rgba(255,255,255,0.9)"
+          strokeWidth="1.5"
+        />
+        {/* Launch rocket */}
+        <path
+          d="M 50 14 L 56 28 L 50 26 L 44 28 Z"
+          fill="url(#productDevGrad)"
+          opacity="0.95"
+        />
+        <path
+          d="M 50 14 L 56 28 L 50 26 L 44 28 Z"
+          fill="none"
+          stroke="rgba(255,255,255,0.9)"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
+        />
+        <circle cx="50" cy="20" r="2.5" fill="rgba(255,255,255,0.9)" />
+        {/* Launch trail */}
+        <path
+          d="M 46 28 Q 50 34, 54 28"
+          stroke="rgba(255,255,255,0.5)"
+          strokeWidth="2"
+          fill="none"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 48 30 L 46 36 M 52 30 L 54 36"
+          stroke="rgba(255,255,255,0.4)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        {/* Product feature lines */}
+        <rect
+          x="38"
+          y="37"
+          width="10"
+          height="2"
+          rx="1"
+          fill="rgba(255,255,255,0.7)"
+        />
+        <rect
+          x="52"
+          y="37"
+          width="8"
+          height="2"
+          rx="1"
+          fill="rgba(255,255,255,0.5)"
+        />
+        <rect
+          x="34"
+          y="49"
+          width="14"
+          height="2"
+          rx="1"
+          fill="rgba(255,255,255,0.6)"
+        />
+        <rect
+          x="52"
+          y="49"
+          width="12"
+          height="2"
+          rx="1"
+          fill="rgba(255,255,255,0.4)"
+        />
+      </svg>
+    ),
   };
   return icons[type] || icons["Website Development"];
 };
@@ -728,6 +885,14 @@ const Services = () => {
     },
     {
       link: "#",
+      text: "Product Development",
+      imageType: "productdev",
+      description:
+        "We transform innovative ideas into scalable digital products, from MVP development to full product launch.",
+      category: "Development",
+    },
+    {
+      link: "#",
       text: "Logo Design",
       imageType: "logo",
       description:
@@ -763,6 +928,7 @@ const Services = () => {
       imageType: "branding",
       description: "Comprehensive brand guidelines and positioning strategies",
       category: "Design",
+      showBelowDesktop: true,
     },
   ];
 
@@ -887,12 +1053,10 @@ const Services = () => {
 
         {/* Service Cards Grid */}
         <div className="services-grid">
-          {filteredServices.map((item, index) => (
+          {filteredServices.map((item) => (
             <div
-              className="service-card"
-              key={index}
-              data-aos="fade-up"
-              data-aos-delay={index * 50}
+              className={`service-card${item.showBelowDesktop ? " service-card--below-desktop" : ""}`}
+              key={item.text}
             >
               <div className="service-card-inner">
                 <div className="service-icon-wrapper">
@@ -1042,7 +1206,7 @@ const Services = () => {
             >
               <div className="process-number">01</div>
               <div className="process-content">
-                <div className="process-icon">
+                {/* <div className="process-icon">
                   <svg viewBox="0 0 64 64" fill="none">
                     <circle
                       cx="32"
@@ -1059,7 +1223,7 @@ const Services = () => {
                       strokeLinecap="round"
                     />
                   </svg>
-                </div>
+                </div> */}
                 <h3>Discovery & Planning</h3>
                 <p>
                   We dive deep into your business goals, target audience, and
@@ -1076,7 +1240,7 @@ const Services = () => {
             >
               <div className="process-number">02</div>
               <div className="process-content">
-                <div className="process-icon">
+                {/* <div className="process-icon">
                   <svg viewBox="0 0 64 64" fill="none">
                     <rect
                       x="12"
@@ -1095,7 +1259,7 @@ const Services = () => {
                       strokeLinecap="round"
                     />
                   </svg>
-                </div>
+                </div> */}
                 <h3>Design & Prototype</h3>
                 <p>
                   Our designers craft intuitive, beautiful interfaces with
@@ -1112,7 +1276,7 @@ const Services = () => {
             >
               <div className="process-number">03</div>
               <div className="process-content">
-                <div className="process-icon">
+                {/* <div className="process-icon">
                   <svg viewBox="0 0 64 64" fill="none">
                     <circle
                       cx="32"
@@ -1130,7 +1294,7 @@ const Services = () => {
                       strokeLinejoin="round"
                     />
                   </svg>
-                </div>
+                </div> */}
                 <h3>Development & Testing</h3>
                 <p>
                   Expert developers build your solution with clean code,
@@ -1147,7 +1311,7 @@ const Services = () => {
             >
               <div className="process-number">04</div>
               <div className="process-content">
-                <div className="process-icon">
+                {/* <div className="process-icon">
                   <svg viewBox="0 0 64 64" fill="none">
                     <path
                       d="M32 8l8 16h16l-13 13 5 15-16-10-16 10 5-15-13-13h16z"
@@ -1156,7 +1320,7 @@ const Services = () => {
                       fill="none"
                     />
                   </svg>
-                </div>
+                </div> */}
                 <h3>Launch & Support</h3>
                 <p>
                   Seamless deployment to production with ongoing maintenance,
@@ -1196,38 +1360,19 @@ const Services = () => {
             >
               <h3 className="tech-category-title">Frontend</h3>
               <div className="tech-grid">
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                    </svg>
+                {[
+                  { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+                  { name: "Vue.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+                  { name: "Next.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+                  { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+                ].map((tech) => (
+                  <div className="tech-item" key={tech.name}>
+                    <div className="tech-icon-box">
+                      <img src={tech.logo} alt={tech.name} width="32" height="32" loading="lazy" />
+                    </div>
+                    <span>{tech.name}</span>
                   </div>
-                  <span>React</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l10 6v10l-10 6-10-6V8l10-6z" />
-                    </svg>
-                  </div>
-                  <span>Vue.js</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                    </svg>
-                  </div>
-                  <span>Next.js</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2L2 7l10 5 10-5z" />
-                    </svg>
-                  </div>
-                  <span>TypeScript</span>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -1236,41 +1381,22 @@ const Services = () => {
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              <h3 className="tech-category-title">Backend</h3>
-              <div className="tech-grid">
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l10 6v10l-10 6-10-6V8z" />
-                    </svg>
-                  </div>
-                  <span>Node.js</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <circle cx="12" cy="12" r="10" />
-                    </svg>
-                  </div>
-                  <span>Python</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <rect x="4" y="4" width="16" height="16" rx="2" />
-                    </svg>
-                  </div>
-                  <span>MongoDB</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2L2 7v10l10 5 10-5V7z" />
-                    </svg>
-                  </div>
-                  <span>PostgreSQL</span>
-                </div>
-              </div>
+                      <h3 className="tech-category-title">Backend</h3>
+                      <div className="tech-grid">
+                        {[
+                          { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+                          { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+                          { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+                          { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+                        ].map((tech) => (
+                          <div className="tech-item" key={tech.name}>
+                            <div className="tech-icon-box">
+                              <img src={tech.logo} alt={tech.name} width="32" height="32" loading="lazy" />
+                            </div>
+                            <span>{tech.name}</span>
+                          </div>
+                        ))}
+                      </div>
             </div>
 
             <div
@@ -1278,41 +1404,22 @@ const Services = () => {
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              <h3 className="tech-category-title">Cloud & DevOps</h3>
-              <div className="tech-grid">
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l10 6v10l-10 6-10-6V8z" />
-                    </svg>
-                  </div>
-                  <span>AWS</span>
+                <h3 className="tech-category-title">Cloud & DevOps</h3>
+                <div className="tech-grid">
+                  {[
+                    { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+                    { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+                    { name: "Firebase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+                    { name: "Vercel", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" },
+                  ].map((tech) => (
+                    <div className="tech-item" key={tech.name}>
+                      <div className="tech-icon-box">
+                        <img src={tech.logo} alt={tech.name} width="32" height="32" loading="lazy" />
+                      </div>
+                      <span>{tech.name}</span>
+                    </div>
+                  ))}
                 </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <circle cx="12" cy="12" r="10" />
-                    </svg>
-                  </div>
-                  <span>Docker</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <rect x="4" y="4" width="16" height="16" rx="2" />
-                    </svg>
-                  </div>
-                  <span>Firebase</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2L2 7l10 5 10-5z" />
-                    </svg>
-                  </div>
-                  <span>Vercel</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

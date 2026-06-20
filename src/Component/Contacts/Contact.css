@@ -21,6 +21,11 @@
 /* ============================================
    BASE STYLES
    ============================================ */
+  
+
+.Toastify__toast-container {
+  z-index: 9999 !important;
+}
 
 .contact-section {
   position: relative;
@@ -34,7 +39,7 @@
 
 /* Background Elements */
 .contact-bg-gradient {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -49,7 +54,7 @@
 }
 
 .contact-noise {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -216,7 +221,7 @@
 /* Socials Grid */
 .socials-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+ grid-template-columns: repeat(2, 1fr);
   gap: var(--contact-spacing-md);
 }
 
@@ -393,6 +398,15 @@
   appearance: none;
 }
 
+/* ← Add this separately right after */
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c80000' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
 .form-group input::placeholder,
 .form-group textarea::placeholder {
   color: rgba(255, 255, 255, 0.35);
@@ -458,21 +472,21 @@
 /* Checkboxes */
 .services-checkboxes {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(2, 1fr); /* ← change from auto-fill */
   gap: var(--contact-spacing-md);
-}
+  }
 
 .checkbox-label {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* ← change from center */
   cursor: pointer;
-  padding: 14px 18px 14px 50px;
+  padding: 12px 16px 12px 50px;
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.03);
   transition: var(--contact-transition);
-  min-height: 60px;
+  min-height: auto; 
 }
 
 .checkbox-label:hover {
@@ -620,6 +634,11 @@
   .contact-main-grid {
     grid-template-columns: 1fr;
     gap: var(--contact-spacing-xl);
+    
+  }
+
+  .contact-form-column {
+    order: -1; /* ← form appears first on tablet/mobile */
   }
 
   .contact-header-section {
@@ -646,12 +665,12 @@
 
 /* Mobile Large (426px - 767px) */
 @media (max-width: 767px) and (min-width: 426px) {
-  .contact-wrapper {
-    padding: 3rem 1rem;
+ .contact-wrapper {
+    padding: 7rem 1rem 2.5rem 1rem; /* ← top was 1.5rem, now 5rem to clear navbar */
   }
 
   .contact-header-section {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem; /* ← was: 2.5rem */
   }
 
   .header-main-title {
@@ -690,7 +709,7 @@
   }
 
   .services-checkboxes {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr; /* ← already correct */
     gap: var(--contact-spacing-md);
   }
 
@@ -703,13 +722,67 @@
     font-size: 0.9rem;
     gap: var(--contact-spacing-md);
   }
-}
+   .contact-form {
+    gap: var(--contact-spacing-lg); /* ← reduce from 2xl (4rem) to lg (2rem) */
+  }
 
+  .form-actions {
+    margin-top: 0; /* ← remove extra top margin */
+  }
+  .contact-form-column,
+  .contact-form,
+  .form-section,
+  .form-grid-2,
+  .services-checkboxes,
+  .checkbox-label,
+  .phone-input-group {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    max-width: 100%;
+  }
+    .phone-input-group {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .country-code-select {
+    min-width: 0;
+    flex-shrink: 0;
+    width: auto;
+    max-width: 110px;
+    padding: 12px 28px 12px 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c80000' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .phone-input-group input {
+    min-width: 0;
+    width: 0; /* flex will grow it */
+    flex: 1;
+  }
+
+  .form-group {
+    min-width: 0;
+    width: 100%;
+  }
+}
 /* Mobile Medium (376px - 425px) */
 @media (max-width: 425px) and (min-width: 376px) {
   .contact-wrapper {
-    padding: 2.5rem 0.875rem;
+    padding: 7rem 0.875rem 2.5rem 0.875rem; /* ← add top clearance */
   }
+  /* .contact-wrapper {
+    padding: 2.5rem 0.875rem;
+  } */
 
   .contact-header-section {
     margin-bottom: 2rem;
@@ -781,8 +854,8 @@
   }
 
   .services-checkboxes {
-    grid-template-columns: 1fr;
-    gap: var(--contact-spacing-sm);
+     grid-template-columns: repeat(2, 1fr);
+    gap: var(--contact-spacing-md);
   }
 
   .submit-button {
@@ -795,12 +868,63 @@
     font-size: 0.85rem;
     gap: var(--contact-spacing-sm);
   }
-}
+  .contact-form {
+    gap: var(--contact-spacing-md); /* ← even tighter on small mobile */
+  }
 
+  .form-actions {
+    margin-top: 0;
+  }
+   .contact-form-column,
+  .contact-form,
+  .form-section,
+  .form-grid-2,
+  .services-checkboxes,
+  .checkbox-label,
+  .phone-input-group {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    max-width: 100%;
+  }
+  .phone-input-group {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .country-code-select {
+    min-width: 0;
+    flex-shrink: 0;
+    width: auto;
+    max-width: 110px;
+    padding: 10px 28px 10px 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c80000' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .phone-input-group input {
+    min-width: 0;
+    width: 0;
+    flex: 1;
+  }
+
+  .form-group {
+    min-width: 0;
+    width: 100%;
+  }
+}
 /* Mobile Small (321px - 375px) */
 @media (max-width: 375px) and (min-width: 321px) {
   .contact-wrapper {
-    padding: 2rem 0.75rem;
+    padding: 7rem 0.75rem 2rem 0.75rem;
   }
 
   .contact-header-section {
@@ -887,9 +1011,19 @@
     gap: var(--contact-spacing-sm);
   }
 
+  /* ✅ UPDATED - fixes checkbox click target */
   .checkbox-label {
-    padding: var(--contact-spacing-xs);
+    padding: 12px 12px 12px 46px;
     font-size: 0.85rem;
+  }
+
+  /* ✅ ADDED - fixes custom checkbox position */
+  .checkbox-label span::before {
+    left: -32px;
+  }
+
+  .checkbox-label span::after {
+    left: -31px;
   }
 
   .checkbox-label input[type="checkbox"] {
@@ -916,12 +1050,64 @@
   .benefits-list li::before {
     font-size: 1rem;
   }
+   .contact-form {
+    gap: var(--contact-spacing-md);
+  }
+
+  .form-actions {
+    margin-top: 0;
+  }
+  .contact-form-column,
+  .contact-form,
+  .form-section,
+  .form-grid-2,
+  .services-checkboxes,
+  .checkbox-label,
+  .phone-input-group {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    max-width: 100%;
+  }
+  .phone-input-group {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .country-code-select {
+    min-width: 0;
+    flex-shrink: 0;
+    width: auto;
+    max-width: 100px;
+    padding: 10px 28px 10px 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c80000' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .phone-input-group input {
+    min-width: 0;
+    width: 0;
+    flex: 1;
+  }
+
+  .form-group {
+    min-width: 0;
+    width: 100%;
+  }
 }
 
 /* Mobile Extra Small (320px and below) */
 @media (max-width: 320px) {
-  .contact-wrapper {
-    padding: 1.5rem 0.625rem;
+   .contact-wrapper {
+    padding: 7rem 0.625rem 2.5rem 0.625rem;
   }
 
   .contact-header-section {
@@ -1042,5 +1228,50 @@
   .benefits-list li::before {
     font-size: 0.9rem;
     margin-top: 1px;
+  }
+    .contact-form-column,
+  .contact-form,
+  .form-section,
+  .form-grid-2,
+  .services-checkboxes,
+  .checkbox-label,
+  .phone-input-group {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    max-width: 100%;
+  }
+  .phone-input-group {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .country-code-select {
+    min-width: 0;
+    flex-shrink: 0;
+    width: auto;
+    max-width: 90px;
+    padding: 9px 24px 9px 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c80000' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .phone-input-group input {
+    min-width: 0;
+    width: 0;
+    flex: 1;
+  }
+
+  .form-group {
+    min-width: 0;
+    width: 100%;
   }
 }

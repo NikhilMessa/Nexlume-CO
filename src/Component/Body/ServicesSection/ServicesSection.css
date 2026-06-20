@@ -74,8 +74,8 @@
   transform: translateX(5px);
 }
 
-/* Service Card */
-.service-card {
+/* Service Card - legacy styles kept for reference; home section uses Tailwind */
+.services-section .service-card {
   display: block;
   padding: 40px 30px;
   background-color: rgba(255, 255, 255, 0.03);
@@ -91,8 +91,8 @@
   min-height: 280px;
 }
 
-.service-card:hover,
-.service-card.hovered {
+.services-section .service-card:hover,
+.services-section .service-card.hovered {
   transform: translateY(-10px);
   background-color: rgba(255, 255, 255, 0.05);
   box-shadow: var(--shadow-2xl);
@@ -120,43 +120,43 @@
 }
 
 /* Gradient backgrounds for each service card on hover */
-.service-card[data-service-id="1"]:hover .icon-wrapper,
-.service-card[data-service-id="1"].hovered .icon-wrapper {
+.services-section .service-card[data-service-id="1"]:hover .icon-wrapper,
+.services-section .service-card[data-service-id="1"].hovered .icon-wrapper {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-.service-card[data-service-id="2"]:hover .icon-wrapper,
-.service-card[data-service-id="2"].hovered .icon-wrapper {
+.services-section .service-card[data-service-id="2"]:hover .icon-wrapper,
+.services-section .service-card[data-service-id="2"].hovered .icon-wrapper {
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
 
-.service-card[data-service-id="3"]:hover .icon-wrapper,
-.service-card[data-service-id="3"].hovered .icon-wrapper {
+.services-section .service-card[data-service-id="3"]:hover .icon-wrapper,
+.services-section .service-card[data-service-id="3"].hovered .icon-wrapper {
   background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
 
-.service-card[data-service-id="4"]:hover .icon-wrapper,
-.service-card[data-service-id="4"].hovered .icon-wrapper {
+.services-section .service-card[data-service-id="4"]:hover .icon-wrapper,
+.services-section .service-card[data-service-id="4"].hovered .icon-wrapper {
   background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
 }
 
-.service-card[data-service-id="5"]:hover .icon-wrapper,
-.service-card[data-service-id="5"].hovered .icon-wrapper {
+.services-section .service-card[data-service-id="5"]:hover .icon-wrapper,
+.services-section .service-card[data-service-id="5"].hovered .icon-wrapper {
   background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
 }
 
-.service-card[data-service-id="6"]:hover .icon-wrapper,
-.service-card[data-service-id="6"].hovered .icon-wrapper {
+.services-section .service-card[data-service-id="6"]:hover .icon-wrapper,
+.services-section .service-card[data-service-id="6"].hovered .icon-wrapper {
   background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
 }
 
 /* Service Content */
-.service-content {
+.services-section .service-content {
   position: relative;
   z-index: 2;
 }
 
-.service-title {
+.services-section .service-title {
   color: var(--color-text-primary);
   font-size: 1.5rem;
   font-weight: 600;
@@ -165,12 +165,12 @@
   font-family: var(--font-heading);
 }
 
-.service-card:hover .service-title,
-.service-card.hovered .service-title {
+.services-section .service-card:hover .service-title,
+.services-section .service-card.hovered .service-title {
   color: #c80000;
 }
 
-.service-description {
+.services-section .service-description {
   color: var(--color-text-muted);
   font-size: 0.95rem;
   line-height: 1.6;
@@ -198,8 +198,8 @@
   transform: translate(-10px, 10px);
 }
 
-.service-card:hover .arrow-icon,
-.service-card.hovered .arrow-icon {
+.services-section .service-card:hover .arrow-icon,
+.services-section .service-card.hovered .arrow-icon {
   opacity: 1;
   transform: translate(0, 0);
 }
@@ -226,38 +226,38 @@
   opacity: 0;
 }
 
-.service-card[data-service-id="1"]:hover .gradient-border,
-.service-card[data-service-id="1"].hovered .gradient-border {
+.services-section .service-card[data-service-id="1"]:hover .gradient-border,
+.services-section .service-card[data-service-id="1"].hovered .gradient-border {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   opacity: 1;
 }
 
-.service-card[data-service-id="2"]:hover .gradient-border,
-.service-card[data-service-id="2"].hovered .gradient-border {
+.services-section .service-card[data-service-id="2"]:hover .gradient-border,
+.services-section .service-card[data-service-id="2"].hovered .gradient-border {
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   opacity: 1;
 }
 
-.service-card[data-service-id="3"]:hover .gradient-border,
-.service-card[data-service-id="3"].hovered .gradient-border {
+.services-section .service-card[data-service-id="3"]:hover .gradient-border,
+.services-section .service-card[data-service-id="3"].hovered .gradient-border {
   background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   opacity: 1;
 }
 
-.service-card[data-service-id="4"]:hover .gradient-border,
-.service-card[data-service-id="4"].hovered .gradient-border {
+.services-section .service-card[data-service-id="4"]:hover .gradient-border,
+.services-section .service-card[data-service-id="4"].hovered .gradient-border {
   background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
   opacity: 1;
 }
 
-.service-card[data-service-id="5"]:hover .gradient-border,
-.service-card[data-service-id="5"].hovered .gradient-border {
+.services-section .service-card[data-service-id="5"]:hover .gradient-border,
+.services-section .service-card[data-service-id="5"].hovered .gradient-border {
   background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
   opacity: 1;
 }
 
-.service-card[data-service-id="6"]:hover .gradient-border,
-.service-card[data-service-id="6"].hovered .gradient-border {
+.services-section .service-card[data-service-id="6"]:hover .gradient-border,
+.services-section .service-card[data-service-id="6"].hovered .gradient-border {
   background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
   opacity: 1;
 }
@@ -282,12 +282,12 @@
     justify-content: center;
   }
 
-  .service-card {
+  .services-section .service-card {
     padding: 30px 25px;
     min-height: 260px;
   }
 
-  .service-title {
+  .services-section .service-title {
     font-size: 1.3rem;
   }
 }

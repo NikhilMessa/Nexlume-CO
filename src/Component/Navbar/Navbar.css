@@ -119,11 +119,15 @@
     position: absolute;
     bottom: -4px;
     left: 50%;
-    width: 0;
+     width: 60%;
     height: 2px;
-    background: linear-gradient(90deg, var(--nav-accent), #FF0000);
+    /* background: linear-gradient(90deg, var(--nav-accent), #FF0000); */
     transition: all 0.3s ease;
     transform: translateX(-50%);
+  }
+
+  .desktop-nav .nav-link.active {
+    color: var(--nav-accent) !important;
   }
 
   .desktop-nav .nav-link:hover::after {
@@ -132,6 +136,13 @@
 
   .nav-link:hover {
     color: var(--nav-accent) !important;
+  }
+   .nav-link {
+    margin: 0 0.5rem;
+  }
+
+  .navbar-brand.position-absolute {
+    z-index: 1030;
   }
 }
 
@@ -193,7 +204,15 @@
    MOBILE MENU - Slide In Animation
    ============================================ */
 @media (max-width: 991.98px) {
-  .mobile-menu-overlay {
+
+  .navbar-nav .nav-link.active::before {
+    width: 40px;
+  }
+
+.navbar-nav .nav-link.active {
+    color: #ffffff !important;
+  }
+    .mobile-menu-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -346,7 +365,7 @@
 }
 
 /* Desktop menu spacing */
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
   .nav-link {
     margin: 0 0.5rem;
   }
@@ -354,7 +373,7 @@
   .navbar-brand.position-absolute {
     z-index: 1030;
   }
-}
+} */
 
 /* ============================================
    ACCESSIBILITY

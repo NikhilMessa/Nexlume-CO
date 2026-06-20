@@ -15,24 +15,20 @@ import TeamEmailImage from "../../assets/Team/team-email.jpg";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
-const TeamMemberCard = ({ member }) => {
+const TeamMemberCard = ({ member, priority = false }) => {
   return (
-    <div className="team-card">
+     <div className="team-card">
       <div className="team-card-inner">
         <div className="team-image-wrapper">
           <OptimizedImage
             src={resolveMemberImage(member.image)}
             alt={member.title}
             className="team-image"
-            generateSources={false}
-            priority
-            style={{
-              "--team-image-position": member.imagePosition || "center 30%",
-            }}
+            priority={priority}
+            style={{ "--team-image-position": member.imagePosition || "center 30%" }}
           />
           <div className="team-image-overlay"></div>
         </div>
-
         <div className="team-content">
           <div className="team-header">
             <h3 className="team-name">{member.title}</h3>
@@ -202,6 +198,7 @@ const Team = () => {
                   <TeamMemberCard
                     key={member._id || index}
                     member={member}
+                    priority={index < 2}
                   />
                 ))}
           </div>

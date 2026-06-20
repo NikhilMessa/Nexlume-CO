@@ -1,22 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Contact.css";
 import { toast } from "react-toastify";
-const defaultSocialLinks = [
-  {
-    id: "1",
-    name: "Instagram",
-    iconSrc:
-      "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg",
-    href: "https://www.instagram.com/nexlume",
-  },
-  {
-    id: "2",
-    name: "LinkedIn",
-    iconSrc:
-      "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg",
-    href: "https://www.linkedin.com/in/nexlume-co-463256384/",
-  },
-];
+// const defaultSocialLinks = [
+//   {
+//     id: "1",
+//     name: "Instagram",
+//     iconSrc:
+//       "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg",
+//     href: "https://www.instagram.com/nexlume",
+//   },
+//   {
+//     id: "2",
+//     name: "LinkedIn",
+//     iconSrc:
+//       "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg",
+//     href: "https://www.linkedin.com/in/nexlume-co-463256384/",
+//   },
+// ];
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
@@ -35,7 +35,7 @@ const countryOptions = [
 const ContactSection = ({
   title = "We can turn your dream project into reality",
   contactEmail = "nexlume.co@gmail.com",
-  socialLinks = defaultSocialLinks,
+  // socialLinks = defaultSocialLinks,
 }) => {
   const [formData, setFormData] = useState({
     name: "",
@@ -126,7 +126,9 @@ const ContactSection = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    toast.dismiss(); // ← add this line
 
+    
     if (!formData.name.trim()) {
       toast.warning("Full name is required.");
       focusField(nameRef);
@@ -266,7 +268,7 @@ const ContactSection = ({
               </p>
             </div>
 
-            <div className="info-block">
+            {/* <div className="info-block">
               <h3 className="info-title">Connect With Us</h3>
               <div className="socials-grid">
                 {socialLinks.map((link) => (
@@ -283,7 +285,7 @@ const ContactSection = ({
                   </a>
                 ))}
               </div>
-            </div>
+            </div> */}
 
             <div className="info-block">
               <h3 className="info-title">Why Choose Us</h3>
