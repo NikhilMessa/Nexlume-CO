@@ -1,4 +1,4 @@
-import nexlumeVideo from "../../../assets/Video/nexlume_video.mp4"
+import nexlumeVideo from "../../../assets/Video/nexlume.mp4"
 import React from 'react';
 import './VideoDescription.css';
 

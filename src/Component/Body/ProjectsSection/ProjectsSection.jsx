@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProjectsSection.css";
-import SafarnamaVideo from "../../../assets/Video/SafarNamaVideo.mp4";
+import SafarnamaVideo from "../../../assets/Video/safar.mp4";
 import NexshowVideo from "../../../assets/Video/NexShow.mp4";
 import StyloraVideo from "../../../assets/Video/StyloraVideo.mp4";
 
