@@ -665,6 +665,11 @@
 
 /* Mobile Large (426px - 767px) */
 @media (max-width: 767px) and (min-width: 426px) {
+
+   .checkbox-label span {
+    font-size: 0.9rem;
+    white-space: nowrap; /* ← prevent wrapping */
+  }
  .contact-wrapper {
     padding: 7rem 1rem 2.5rem 1rem; /* ← top was 1.5rem, now 5rem to clear navbar */
   }
@@ -710,7 +715,7 @@
 
   .services-checkboxes {
     grid-template-columns: 1fr; /* ← already correct */
-    gap: var(--contact-spacing-md);
+     gap: 0.75rem;
   }
 
   .submit-button {
@@ -739,6 +744,13 @@
     min-width: 0;
     width: 100%;
   }
+
+   .checkbox-label {
+    padding: 10px 16px 10px 46px;
+    min-height: auto;
+    align-items: center; /* ← center vertically since single line now */
+  }
+
 
   .form-group input,
   .form-group select,
@@ -854,8 +866,8 @@
   }
 
   .services-checkboxes {
-     grid-template-columns: repeat(2, 1fr);
-    gap: var(--contact-spacing-md);
+     grid-template-columns: 1fr; /* ← single column */
+    gap: 0.65rem;
   }
 
   .submit-button {
@@ -884,6 +896,17 @@
   .phone-input-group {
     min-width: 0;
     width: 100%;
+  }
+
+    .checkbox-label {
+    padding: 10px 16px 10px 46px;
+    min-height: auto;
+    align-items: center;
+  }
+
+  .checkbox-label span {
+    font-size: 0.88rem;
+    white-space: nowrap;
   }
 
   .form-group input,

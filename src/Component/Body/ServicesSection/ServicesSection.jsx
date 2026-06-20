@@ -128,9 +128,9 @@ const ServicesSection = () => {
                       </h3>
                     </div>
                   </div>
-                      <span className="flex-shrink-0 self-start -mr-3 px-3 py-1.5 text-[10px] font-medium text-gray-300 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm whitespace-nowrap">
+                      {/* <span className="flex-shrink-0 self-start -mr-3 px-3 py-1.5 text-[10px] font-medium text-gray-300 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm whitespace-nowrap">
                       Ready to build
-                    </span>
+                    </span> */}
                 </div>
 
                 {/* Description */}
