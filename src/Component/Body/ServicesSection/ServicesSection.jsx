@@ -154,9 +154,9 @@ const ServicesSection = () => {
                 <div className="flex items-center justify-between pt-5 border-t border-white/5 relative z-10">
                   <div className="flex items-center gap-2.5">
                     <span className="w-1.5 h-1.5 bg-[#C80000] rounded-full animate-pulse"></span>
-                    <span className="text-xs font-medium text-gray-400">
+                    {/* <span className="text-xs font-medium text-gray-400">
                       Crafted for velocity
-                    </span>
+                    </span> */}
                   </div>
                   <div className="flex items-center gap-2 text-xs font-medium text-gray-400 transition-colors group-hover:text-white">
                     <span>View details</span>

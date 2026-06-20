@@ -529,13 +529,6 @@
   transform: translateX(4px);
 }
 
-/* Brand Strategy: phone, tablet, laptop only — hidden on large desktop (1440px and below stay visible) */
-@media (min-width: 1441px) {
-  .services-showcase .service-card--below-desktop {
-    display: none;
-  }
-}
-
 /* Flowing Menu Section */
 .flowing-menu-section {
   margin-top: 80px;
@@ -1872,6 +1865,9 @@
   }
   .full-screen-container .header p br {
     display: none;
+  }
+  .full-screen-container .header p .highlight {
+    margin-right: 0.2em;
   }
 
   /* S-03: Filter buttons wrapping into second row */

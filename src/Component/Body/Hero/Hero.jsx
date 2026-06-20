@@ -37,7 +37,7 @@ export default function Hero() {
 
   return (
     <section
-      className="hero-section position-relative min-vh-100 d-flex align-items-center justify-content-center overflow-hidden"
+    className="hero-section position-relative min-vh-100 d-flex align-items-center justify-content-center"
       aria-label="Hero section"
     >
       {/* Starry Background */}

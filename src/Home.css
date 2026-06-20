@@ -38,7 +38,9 @@
 }
 .home-container {
   background-color: black;
-  overflow: hidden;
+  overflow-x: hidden; /* ← only hide horizontal overflow */
+  overflow-y: visible; /* ← allow vertical scrolling */
+  width: 100%;
 }
 .home-container > * {
   opacity: 0;

@@ -34,28 +34,19 @@ const fallbackProjects = [
     id: 1,
     title: "SAFARNAMA",
     tags: ["Tours and Travel", "Logo Design"],
-    description:
-      "Embark on extraordinary journeys with Safarnama, where every trip is crafted to perfection. From breathtaking landscapes to cultural wonders, we curate seamless itineraries and exclusive experiences tailored for modern explorers. Whether it's a solo adventure, a romantic getaway, or a group expedition, we ensure hassle-free travel, unforgettable memories, and stories worth sharing. Let's turn your travel dreams into reality! 🌍✈️",
     video: SafarnamaVideo,
-    tagline: "Where Adventure Meets Simplicity",
   },
   {
     id: 2,
     title: "NEXSHOW",
     tags: ["Movie Booking", "Logo Design"],
-    description:
-      "Book your favorite movies effortlessly with NexShow, your one-stop destination for seamless movie ticket booking. Discover the latest blockbusters, explore showtimes, and secure the best seats—all with a few clicks. Whether it's an action-packed thriller, a heartwarming romance, or a family-friendly film, NexShow ensures a hassle-free booking experience. Enjoy the magic of cinema like never before! 🎬🍿",
     video: NexshowVideo,
-    tagline: "Where Cinema Meets Convenience",
   },
   {
     id: 3,
     title: "STYLORA",
     tags: ["E-commerce", "Logo Design"],
-    description:
-      "Step into a world of trendsetting fashion with Stylora, your go-to destination for the latest styles and timeless classics. From chic casuals to elegant formals, we bring you a curated collection of apparel that blends quality, comfort, and sophistication. Shop effortlessly, stay ahead of trends, and express your unique style with Stylora—where fashion meets convenience! 👗🛍️",
     video: StyloraVideo,
-    tagline: "Where Style Meets Simplicity",
   },
 ];
 
@@ -202,7 +193,8 @@ const ProjectsSection = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-3 tracking-tight leading-tight">
+                 <h3 className="text-2xl sm:text-3xl font-heading font-bold text-red-500 mb-3 tracking-tight leading-tight">
+
                     {project.title}
                   </h3>
 
@@ -218,23 +210,23 @@ const ProjectsSection = () => {
                     ))}
                   </div>
 
-                  {/* Description */}
-                  <p className="project-impact-text text-sm leading-relaxed mb-6 line-clamp-3">
+                  Description
+                <p className="text-white text-sm leading-relaxed mb-6 line-clamp-3">
                     {project.description}
                   </p>
 
                   {/* Tagline */}
-                  <p className="text-sm text-red-400/70 italic font-light mb-6 pb-6 border-b border-red-500/20">
+                  {/* <p className="text-sm text-red-400/70 italic font-light mb-6 pb-6 border-b border-red-500/20">
                     "{project.tagline}"
-                  </p>
+                  </p> */}
 
                   {/* Action Area */}
                  {/* Action Area - Mobile Only: centered, no heart */}
                     <div className="flex justify-center">
                       <button
-                        onClick={() => handleViewProject(project.id)}
-                        className="w-full group/btn inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold text-white bg-gradient-to-r from-red-600 to-red-700 rounded-lg transition-all duration-300 hover:from-red-700 hover:to-red-800 hover:shadow-lg hover:shadow-red-500/40 active:scale-95"
-                      >
+              onClick={() => handleViewProject(project.id)}
+              className="mt-auto group/btn relative inline-flex items-center gap-3 px-8 py-4 text-sm font-semibold text-white bg-red-600 rounded-lg transition-all duration-300 hover:bg-red-700 hover:shadow-2xl hover:shadow-red-500/30 overflow-hidden"
+            >
                         <span>EXPLORE</span>
                         <svg
                           className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1"
@@ -257,16 +249,18 @@ const ProjectsSection = () => {
               {/* Desktop Layout: Full Content with Better Details */}
               <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8 relative p-10 xl:p-12 h-full">
                 {/* Left Column - Content */}
-                <div className="flex flex-col justify-between">
+               <div className="flex flex-col justify-start">
                   {/* Project Header with Accent Line */}
-                  <div>
+                 <div className="mb-4">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-1 h-8 bg-gradient-to-b from-red-600 to-red-800 rounded-full"></div>
                       <span className="text-xs uppercase tracking-widest text-red-500 font-semibold">
                         Project
                       </span>
                     </div>
-                    <h3 className="text-5xl 2xl:text-6xl font-heading font-bold text-white mb-3 tracking-tight leading-tight">
+                    <h3 className="text-5xl 2xl:text-6xl font-heading font-bold text-red-500 mb-0 tracking-tight leading-tight">
+
+
                       {project.title}
                     </h3>
                     {/* <p className="text-sm uppercase tracking-widest text-red-400/80 font-medium mb-6">
@@ -275,8 +269,8 @@ const ProjectsSection = () => {
                   </div>
 
                   {/* Description with Better Typography */}
-                  <div>
-                    <p className="project-impact-text text-base leading-relaxed mb-8">
+                 <div className="mt-4 mb-0">
+                    <p className="text-white text-base leading-relaxed mb-8">
                       {project.description}
                     </p>
 
@@ -303,9 +297,9 @@ const ProjectsSection = () => {
                     </button>
 
                     {/* Tagline */}
-                    <p className="text-sm text-gray-400 italic mt-6 font-light">
+                    {/* <p className="text-sm text-gray-400 italic mt-6 font-light">
                       "{project.tagline}"
-                    </p>
+                    </p> */}
                   </div>
                 </div>
 
