@@ -85,15 +85,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow-x: hidden;
-  max-width: 100vw; /* ← ADD THIS */
+  /* overflow-x: hidden;
+  max-width: 100vw; ← ADD THIS */
 }
-.hero-section .container,
+/* .hero-section .container,
 .hero-section .row,
 .hero-section [class*="col-"] {
   overflow-x: hidden;
   max-width: 100%;
-}
+} */
 .hero-section .row {
   margin-left: 0 !important;
   margin-right: 0 !important;
