@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./Project.css";
 import API from "../../lib/api";
 import { OptimizedImage } from "../../components/OptimizedImage";
+import SEO from "../SEO/SEO";
 
 // ============================================
 // PROJECTS SECTION - START
@@ -579,6 +580,13 @@ export default function Projects() {
     };
   }, []);
   return (
+    <>
+        <SEO
+      title="Projects | Nexlume Portfolio"
+      description="View Nexlume projects including websites, mobile apps, UI/UX designs, branding, and custom software solutions."
+      canonical="/projects"
+      keywords="Nexlume projects, web design portfolio, app development portfolio, UI UX portfolio"
+    />
     <section className="projects-section py-5">
       <div className="container">
         <div className="projects-heading mb-5">
@@ -603,5 +611,6 @@ export default function Projects() {
             ))}
       </div>
     </section>
+    </>
   );
 }

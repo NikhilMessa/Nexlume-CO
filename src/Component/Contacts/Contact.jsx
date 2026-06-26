@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import SEO from "../SEO/SEO";
 import "./Contact.css";
 import { toast } from "react-toastify";
 // const defaultSocialLinks = [
@@ -239,6 +240,15 @@ const ContactSection = ({
   ];
 
   return (
+    <>
+    <SEO
+      title="Contact Nexlume | Start Your Website or App Project"
+      description="Contact Nexlume for website design, web development, mobile app development, UI/UX design, SEO, branding, and software development services."
+      canonical="/contact"
+      keywords="contact Nexlume, website development quote, app development company contact, UI UX design agency contact, software development inquiry"
+      image="/NX.png"
+    />
+
     <section className="contact-section">
       {/* Background elements */}
       <div className="contact-bg-gradient"></div>
@@ -470,6 +480,7 @@ const ContactSection = ({
         </div>
       </div>
     </section>
+    </>
   );
 };
 

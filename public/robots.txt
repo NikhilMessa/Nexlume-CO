@@ -1,4 +1,5 @@
 User-agent: *
+
 Allow: /
 
-Sitemap: https://nexlume.co/sitemap.xml
+Sitemap: https://nexlume-dev.netlify.app/sitemap.xml

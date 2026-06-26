@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Services.css";
 import "./FlowingMenu.css";
 import { gsap } from "gsap";
+import SEO from "../SEO/SEO";
 
 // ================= Shared Icon Function =================
 // Professional SVG-based icons for software agency portfolio
@@ -856,7 +857,13 @@ const Services = () => {
 
   return (
     <>
-      {/* Header */}
+          <SEO
+        title="Services | Website Design, App Development & UI/UX | Nexlume"
+        description="Explore Nexlume services including website development, mobile app development, UI/UX design, branding, SEO optimization, and software development."
+        canonical="/services"
+        keywords="website development services, app development services, UI UX design services, SEO services, software development"
+      />
+            {/* Header */}
       <div className="full-screen-container">
         <div className="header">
           <div className="services-style-head">

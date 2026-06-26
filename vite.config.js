@@ -15,15 +15,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          "three-vendor": ["three", "@react-three/fiber", "@react-three/drei"],
-          spline: ["@splinetool/react-spline", "@splinetool/runtime"],
-          animations: ["gsap", "framer-motion"],
-          "ui-vendor": ["react-router-dom", "react-dom"],
-          bootstrap: ["bootstrap"],
-          // ✅ ADD: split react core — it's tiny and changes rarely, great for cache
-          react: ["react"],
-        },
+                    manualChunks: {
+                react: ["react", "react-dom", "react-router-dom"],
+                three: ["three", "@react-three/fiber", "@react-three/drei"],
+                spline: ["@splinetool/react-spline", "@splinetool/runtime"],
+                animation: ["gsap", "framer-motion"],
+                ui: ["bootstrap", "lucide-react", "react-icons"],
+              },
       },
     },
     chunkSizeWarningLimit: 500,

@@ -5,6 +5,7 @@ import "./Team.css";
 import { Link } from "react-router-dom";
 import { FaLinkedin } from "react-icons/fa";
 import API from "../../lib/api";
+import SEO from "../SEO/SEO";
 import {
   prefetchTeam,
   resolveMemberImage,
@@ -159,6 +160,12 @@ const Team = () => {
 
   return (
     <>
+          <SEO
+        title="Team | Meet Nexlume Developers & Designers"
+        description="Meet the Nexlume team of developers, designers, product thinkers, and creators building websites, apps, and digital products."
+        canonical="/team"
+        keywords="Nexlume team, web development team, app development team, UI UX designers"
+      />
       <section id="team" className="team-body">
         <div className="team-hero">
           <div className="team-hero-badge">Our Team</div>
