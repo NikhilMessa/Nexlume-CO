@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ProjectsSection.css";
-import SafarnamaVideo from "../../../assets/Video/SafarNamaVideo.mp4";
+import SafarnamaVideo from "../../../assets/Video/safar.mp4";
 import NexshowVideo from "../../../assets/Video/NexShow.mp4";
 import StyloraVideo from "../../../assets/Video/StyloraVideo.mp4";
 
@@ -34,28 +34,19 @@ const fallbackProjects = [
     id: 1,
     title: "SAFARNAMA",
     tags: ["Tours and Travel", "Logo Design"],
-    description:
-      "Embark on extraordinary journeys with Safarnama, where every trip is crafted to perfection. From breathtaking landscapes to cultural wonders, we curate seamless itineraries and exclusive experiences tailored for modern explorers. Whether it's a solo adventure, a romantic getaway, or a group expedition, we ensure hassle-free travel, unforgettable memories, and stories worth sharing. Let's turn your travel dreams into reality! 🌍✈️",
     video: SafarnamaVideo,
-    tagline: "Where Adventure Meets Simplicity",
   },
   {
     id: 2,
     title: "NEXSHOW",
     tags: ["Movie Booking", "Logo Design"],
-    description:
-      "Book your favorite movies effortlessly with NexShow, your one-stop destination for seamless movie ticket booking. Discover the latest blockbusters, explore showtimes, and secure the best seats—all with a few clicks. Whether it's an action-packed thriller, a heartwarming romance, or a family-friendly film, NexShow ensures a hassle-free booking experience. Enjoy the magic of cinema like never before! 🎬🍿",
     video: NexshowVideo,
-    tagline: "Where Cinema Meets Convenience",
   },
   {
     id: 3,
     title: "STYLORA",
     tags: ["E-commerce", "Logo Design"],
-    description:
-      "Step into a world of trendsetting fashion with Stylora, your go-to destination for the latest styles and timeless classics. From chic casuals to elegant formals, we bring you a curated collection of apparel that blends quality, comfort, and sophistication. Shop effortlessly, stay ahead of trends, and express your unique style with Stylora—where fashion meets convenience! 👗🛍️",
     video: StyloraVideo,
-    tagline: "Where Style Meets Simplicity",
   },
 ];
 
@@ -176,9 +167,9 @@ const ProjectsSection = () => {
               {/* Mobile Layout: Video First with Overlay Content */}
               <div className="block lg:hidden">
                 {/* Video Container with Better Styling */}
-                <div className="relative w-full aspect-[9/12] overflow-hidden bg-black">
+                <div className="relative w-full aspect-[16/9] overflow-hidden bg-black">
                   <video
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-contain bg-black"
                     autoPlay
                     loop
                     muted
@@ -202,7 +193,8 @@ const ProjectsSection = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl sm:text-3xl font-heading font-bold text-white mb-3 tracking-tight leading-tight">
+                 <h3 className="text-2xl sm:text-3xl font-heading font-bold text-red-500 mb-3 tracking-tight leading-tight">
+
                     {project.title}
                   </h3>
 
@@ -218,69 +210,57 @@ const ProjectsSection = () => {
                     ))}
                   </div>
 
-                  {/* Description */}
-                  <p className="project-impact-text text-sm leading-relaxed mb-6 line-clamp-3">
+                  Description
+                <p className="text-white text-sm leading-relaxed mb-6 line-clamp-3">
                     {project.description}
                   </p>
 
                   {/* Tagline */}
-                  <p className="text-sm text-red-400/70 italic font-light mb-6 pb-6 border-b border-red-500/20">
+                  {/* <p className="text-sm text-red-400/70 italic font-light mb-6 pb-6 border-b border-red-500/20">
                     "{project.tagline}"
-                  </p>
+                  </p> */}
 
                   {/* Action Area */}
-                  <div className="flex gap-3">
-                    <button
-                      onClick={() => handleViewProject(project.id)}
-                      className="flex-1 group/btn inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold text-white bg-gradient-to-r from-red-600 to-red-700 rounded-lg transition-all duration-300 hover:from-red-700 hover:to-red-800 hover:shadow-lg hover:shadow-red-500/40 active:scale-95"
-                    >
-                      <span>EXPLORE</span>
-                      <svg
-                        className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2.5}
-                          d="M13 7l5 5m0 0l-5 5m5-5H6"
-                        />
-                      </svg>
-                    </button>
-                    <button className="px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-300 border border-white/10">
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
+                 {/* Action Area - Mobile Only: centered, no heart */}
+                    <div className="flex justify-center">
+                      <button
+              onClick={() => handleViewProject(project.id)}
+              className="mt-auto group/btn relative inline-flex items-center gap-3 px-8 py-4 text-sm font-semibold text-white bg-red-600 rounded-lg transition-all duration-300 hover:bg-red-700 hover:shadow-2xl hover:shadow-red-500/30 overflow-hidden"
+            >
+                        <span>EXPLORE</span>
+                        <svg
+                          className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2.5}
+                            d="M13 7l5 5m0 0l-5 5m5-5H6"
+                          />
+                        </svg>
+                      </button>
+                    </div>
                 </div>
               </div>
 
               {/* Desktop Layout: Full Content with Better Details */}
               <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8 relative p-10 xl:p-12 h-full">
                 {/* Left Column - Content */}
-                <div className="flex flex-col justify-between">
+               <div className="flex flex-col justify-start">
                   {/* Project Header with Accent Line */}
-                  <div>
+                 <div className="mb-4">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-1 h-8 bg-gradient-to-b from-red-600 to-red-800 rounded-full"></div>
                       <span className="text-xs uppercase tracking-widest text-red-500 font-semibold">
                         Project
                       </span>
                     </div>
-                    <h3 className="text-5xl 2xl:text-6xl font-heading font-bold text-white mb-3 tracking-tight leading-tight">
+                    <h3 className="text-5xl 2xl:text-6xl font-heading font-bold text-red-500 mb-0 tracking-tight leading-tight">
+
+
                       {project.title}
                     </h3>
                     {/* <p className="text-sm uppercase tracking-widest text-red-400/80 font-medium mb-6">
@@ -289,8 +269,8 @@ const ProjectsSection = () => {
                   </div>
 
                   {/* Description with Better Typography */}
-                  <div>
-                    <p className="project-impact-text text-base leading-relaxed mb-8">
+                 <div className="mt-4 mb-0">
+                    <p className="text-white text-base leading-relaxed mb-8">
                       {project.description}
                     </p>
 
@@ -317,17 +297,17 @@ const ProjectsSection = () => {
                     </button>
 
                     {/* Tagline */}
-                    <p className="text-sm text-gray-400 italic mt-6 font-light">
+                    {/* <p className="text-sm text-gray-400 italic mt-6 font-light">
                       "{project.tagline}"
-                    </p>
+                    </p> */}
                   </div>
                 </div>
 
                 {/* Right Column - Video Preview with Overlay */}
-                <div className="relative rounded-xl overflow-hidden border border-red-500/20 group">
-                  <div className="relative w-full h-full min-h-[500px]">
+                <div className="relative rounded-xl overflow-hidden border border-red-500/20 group min-h-[400px]">
+                 <div className="relative w-full min-h-[400px] h-full">
                     <video
-                      className="absolute inset-0 w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-contain bg-black"
                       autoPlay
                       loop
                       muted

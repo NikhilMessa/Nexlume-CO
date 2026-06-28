@@ -280,6 +280,7 @@
   overflow: hidden;
   background: #050505;
   min-height: 14rem;
+  aspect-ratio: 16 / 9; /* ← consistent size before image loads */
 }
 
 .pdx-preview-image {
@@ -703,6 +704,7 @@
   font-size: 0.84rem;
   line-height: 1.72;
   padding: 1rem;
+   animation: pdxFadeUp 0.25s ease both; /* ← smooth entrance */
 }
 
 .pdx-impact-grid {
@@ -841,6 +843,45 @@
 }
 
 @media (max-width: 767px) {
+
+  .pdx-hero-title {
+    font-size: clamp(2rem, 9vw, 3.2rem); /* ← was clamp(3.4rem, 16vw, 6rem) */
+    line-height: 1.05;
+    word-break: break-word;
+  }
+
+  .pdx-hero {
+    padding-top: 6rem; /* ← clear navbar */
+  }
+
+  .pdx-preview-media {
+    aspect-ratio: 4 / 3; /* ← better ratio on mobile */
+    min-height: unset;
+  }
+
+  .pdx-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* ← was cover, use contain so screenshot is readable */
+  }
+
+  .pdx-two-card-grid {
+    grid-template-columns: 1fr; /* ← already set, confirm this exists */
+    gap: 0.85rem;
+  }
+
+  .pdx-dark-card {
+    min-height: unset; /* ← remove fixed height */
+    padding: 1.1rem;
+  }
+  .pdx-accordion-trigger {
+    padding: 0.85rem 0.75rem;
+    gap: 0.65rem;
+  }
+
+  .pdx-accordion-title {
+    font-size: 0.75rem;
+  }
   .pdx-section {
     padding: 4rem 0;
   }
@@ -864,6 +905,11 @@
   .pdx-impact-grid,
   .pdx-tech-mini-grid {
     grid-template-columns: 1fr;
+    display: none;
+  }
+
+  .pdx-journey-mini-grid {
+    display: none; /* ← hide duplicate mini cards on mobile */
   }
 
   .pdx-tabs {
@@ -879,4 +925,20 @@
   .pdx-cta-actions {
     flex-direction: column;
   }
+   .pdx-cta-section {
+    padding-bottom: 2.5rem; /* ← reduce bottom padding */
+  }
+  .pdx-cta-banner {
+    padding: 1.4rem 1rem;
+  }
+
+  .pdx-cta-banner h2 {
+    font-size: clamp(1.8rem, 8vw, 2.8rem); /* ← was clamp(3.1rem...) */
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .pdx-cta-banner p {
+    font-size: 0.55rem;
+  }
+
 }

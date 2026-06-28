@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Services.css";
 import "./FlowingMenu.css";
 import { gsap } from "gsap";
+import SEO from "../SEO/SEO";
 
 // ================= Shared Icon Function =================
 // Professional SVG-based icons for software agency portfolio
@@ -11,220 +12,77 @@ const getCreativeIcon = (type) => {
       <svg viewBox="0 0 100 100" className="creative-icon">
         <defs>
           <linearGradient id="webdevGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop
-              offset="0%"
-              style={{ stopColor: "#667eea", stopOpacity: 1 }}
-            />
-            <stop
-              offset="100%"
-              style={{ stopColor: "#764ba2", stopOpacity: 1 }}
-            />
-          </linearGradient>
-          <linearGradient id="webdevGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop
-              offset="0%"
-              style={{ stopColor: "#667eea", stopOpacity: 0.3 }}
-            />
-            <stop
-              offset="100%"
-              style={{ stopColor: "#764ba2", stopOpacity: 0.3 }}
-            />
+            <stop offset="0%" style={{ stopColor: "#667eea", stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: "#764ba2", stopOpacity: 1 }} />
           </linearGradient>
         </defs>
-        {/* Browser Window - Professional */}
-        <rect
-          x="10"
-          y="18"
-          width="80"
-          height="64"
-          rx="4"
-          fill="url(#webdevGrad)"
-          opacity="0.95"
-        />
-        <rect
-          x="10"
-          y="18"
-          width="80"
-          height="64"
-          rx="4"
+        {/* Browser window */}
+        <rect x="12" y="20" width="76" height="58" rx="5" fill="url(#webdevGrad)" opacity="0.95" />
+        <rect x="12" y="20" width="76" height="58" rx="5" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="2" />
+        <rect x="12" y="20" width="76" height="13" rx="5" fill="rgba(255,255,255,0.15)" />
+        <circle cx="22" cy="26.5" r="2.5" fill="rgba(255,255,255,0.8)" />
+        <circle cx="30" cy="26.5" r="2.5" fill="rgba(255,255,255,0.55)" />
+        <circle cx="38" cy="26.5" r="2.5" fill="rgba(255,255,255,0.55)" />
+        {/* HTML / code tags */}
+        <path
+          d="M 32 48 L 26 52 L 32 56 M 68 48 L 74 52 L 68 56"
+          stroke="rgba(255,255,255,0.95)"
+          strokeWidth="3"
           fill="none"
-          stroke="rgba(255,255,255,0.9)"
-          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
-        {/* Browser Header Bar */}
-        <rect
-          x="10"
-          y="18"
-          width="80"
-          height="14"
-          rx="4"
-          fill="rgba(255,255,255,0.15)"
+        <path
+          d="M 44 58 L 56 46"
+          stroke="rgba(255,255,255,0.7)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
         />
-        {/* Navigation Dots - Minimal */}
-        <circle cx="20" cy="25" r="2.5" fill="rgba(255,255,255,0.8)" />
-        <circle cx="28" cy="25" r="2.5" fill="rgba(255,255,255,0.6)" />
-        <circle cx="36" cy="25" r="2.5" fill="rgba(255,255,255,0.6)" />
-        {/* Code Structure - Professional */}
-        <rect
-          x="18"
-          y="38"
-          width="64"
-          height="3"
-          rx="1.5"
-          fill="rgba(255,255,255,0.7)"
-        />
-        <rect
-          x="18"
-          y="46"
-          width="48"
-          height="3"
-          rx="1.5"
-          fill="rgba(255,255,255,0.5)"
-        />
-        <rect
-          x="18"
-          y="54"
-          width="56"
-          height="3"
-          rx="1.5"
-          fill="rgba(255,255,255,0.6)"
-        />
-        <rect
-          x="18"
-          y="62"
-          width="40"
-          height="3"
-          rx="1.5"
-          fill="rgba(255,255,255,0.4)"
-        />
-        <rect
-          x="18"
-          y="70"
-          width="52"
-          height="3"
-          rx="1.5"
-          fill="rgba(255,255,255,0.5)"
-        />
+        {/* Code lines */}
+        <rect x="20" y="64" width="30" height="2.5" rx="1.25" fill="rgba(255,255,255,0.5)" />
+        <rect x="20" y="70" width="22" height="2.5" rx="1.25" fill="rgba(255,255,255,0.35)" />
+        {/* Server / backend node */}
+        <rect x="62" y="62" width="18" height="12" rx="2" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" strokeWidth="1" />
+        <circle cx="66" cy="68" r="1.5" fill="rgba(102,126,234,0.9)" />
+        <circle cx="71" cy="68" r="1.5" fill="rgba(102,126,234,0.7)" />
+        <circle cx="76" cy="68" r="1.5" fill="rgba(102,126,234,0.5)" />
       </svg>
     ),
     "Web Design": (
       <svg viewBox="0 0 100 100" className="creative-icon">
         <defs>
           <linearGradient id="designGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop
-              offset="0%"
-              style={{ stopColor: "#fa709a", stopOpacity: 1 }}
-            />
-            <stop
-              offset="100%"
-              style={{ stopColor: "#fee140", stopOpacity: 1 }}
-            />
-          </linearGradient>
-          <linearGradient id="designGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop
-              offset="0%"
-              style={{ stopColor: "#30cfd0", stopOpacity: 0.6 }}
-            />
-            <stop
-              offset="100%"
-              style={{ stopColor: "#330867", stopOpacity: 0.6 }}
-            />
+            <stop offset="0%" style={{ stopColor: "#fa709a", stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: "#fee140", stopOpacity: 1 }} />
           </linearGradient>
         </defs>
-        {/* Design Canvas - Professional */}
-        <rect
-          x="15"
-          y="15"
-          width="70"
-          height="70"
-          rx="6"
-          fill="url(#designGrad)"
-          opacity="0.95"
+        {/* Website layout mockup */}
+        <rect x="16" y="22" width="68" height="56" rx="5" fill="url(#designGrad)" opacity="0.95" />
+        <rect x="16" y="22" width="68" height="56" rx="5" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="2" />
+        {/* Hero banner block */}
+        <rect x="22" y="28" width="56" height="14" rx="2" fill="rgba(255,255,255,0.35)" />
+        {/* Content columns */}
+        <rect x="22" y="46" width="24" height="24" rx="2" fill="rgba(255,255,255,0.25)" />
+        <rect x="50" y="46" width="28" height="5" rx="1.5" fill="rgba(255,255,255,0.6)" />
+        <rect x="50" y="54" width="22" height="3" rx="1.5" fill="rgba(255,255,255,0.4)" />
+        <rect x="50" y="60" width="26" height="3" rx="1.5" fill="rgba(255,255,255,0.35)" />
+        <rect x="50" y="66" width="18" height="3" rx="1.5" fill="rgba(255,255,255,0.3)" />
+        {/* Color palette swatches */}
+        <circle cx="24" cy="84" r="4" fill="#fa709a" stroke="rgba(255,255,255,0.8)" strokeWidth="1" />
+        <circle cx="36" cy="84" r="4" fill="#fee140" stroke="rgba(255,255,255,0.8)" strokeWidth="1" />
+        <circle cx="48" cy="84" r="4" fill="#30cfd0" stroke="rgba(255,255,255,0.8)" strokeWidth="1" />
+        {/* Design pen tool */}
+        <path
+          d="M 68 14 L 78 18 L 72 28 L 62 24 Z"
+          fill="rgba(255,255,255,0.9)"
         />
-        <rect
-          x="15"
-          y="15"
-          width="70"
-          height="70"
-          rx="6"
-          fill="none"
-          stroke="rgba(255,255,255,0.9)"
+        <path
+          d="M 62 24 L 58 32"
+          stroke="rgba(255,255,255,0.7)"
           strokeWidth="2"
+          strokeLinecap="round"
         />
-        {/* Grid Layout Structure */}
-        <line
-          x1="30"
-          y1="30"
-          x2="30"
-          y2="80"
-          stroke="rgba(255,255,255,0.4)"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="50"
-          y1="30"
-          x2="50"
-          y2="80"
-          stroke="rgba(255,255,255,0.4)"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="70"
-          y1="30"
-          x2="70"
-          y2="80"
-          stroke="rgba(255,255,255,0.4)"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="15"
-          y1="45"
-          x2="85"
-          y2="45"
-          stroke="rgba(255,255,255,0.4)"
-          strokeWidth="1.5"
-        />
-        <line
-          x1="15"
-          y1="60"
-          x2="85"
-          y2="60"
-          stroke="rgba(255,255,255,0.4)"
-          strokeWidth="1.5"
-        />
-        {/* Design Elements - Geometric */}
-        <rect
-          x="35"
-          y="35"
-          width="12"
-          height="8"
-          rx="2"
-          fill="rgba(255,255,255,0.6)"
-        />
-        <rect
-          x="55"
-          y="35"
-          width="12"
-          height="8"
-          rx="2"
-          fill="rgba(255,255,255,0.5)"
-        />
-        <rect
-          x="35"
-          y="50"
-          width="32"
-          height="8"
-          rx="2"
-          fill="rgba(255,255,255,0.4)"
-        />
-        <rect
-          x="35"
-          y="65"
-          width="20"
-          height="8"
-          rx="2"
-          fill="rgba(255,255,255,0.5)"
-        />
+        <circle cx="57" cy="33" r="2" fill="rgba(250,112,154,0.9)" />
       </svg>
     ),
     "Android Development": (
@@ -237,188 +95,111 @@ const getCreativeIcon = (type) => {
             />
             <stop
               offset="100%"
-              style={{ stopColor: "#2ecc71", stopOpacity: 1 }}
+              style={{ stopColor: "#00a86b", stopOpacity: 1 }}
             />
           </linearGradient>
           <linearGradient id="androidGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop
               offset="0%"
-              style={{ stopColor: "#1a1a1a", stopOpacity: 0.9 }}
+              style={{ stopColor: "#1a1a1a", stopOpacity: 0.95 }}
             />
             <stop
               offset="100%"
-              style={{ stopColor: "#2d2d2d", stopOpacity: 0.9 }}
+              style={{ stopColor: "#2d2d2d", stopOpacity: 0.95 }}
             />
           </linearGradient>
         </defs>
-        {/* Phone Body - Professional */}
+        {/* Smartphone frame */}
         <rect
-          x="25"
-          y="20"
-          width="50"
-          height="60"
-          rx="6"
+          x="28"
+          y="16"
+          width="44"
+          height="68"
+          rx="7"
           fill="url(#androidGrad)"
           opacity="0.95"
         />
         <rect
-          x="25"
-          y="20"
-          width="50"
-          height="60"
-          rx="6"
+          x="28"
+          y="16"
+          width="44"
+          height="68"
+          rx="7"
           fill="none"
           stroke="rgba(255,255,255,0.9)"
           strokeWidth="2"
         />
+        <rect x="44" y="20" width="12" height="3" rx="1.5" fill="rgba(255,255,255,0.35)" />
         {/* Screen */}
         <rect
-          x="30"
-          y="28"
-          width="40"
-          height="44"
-          rx="3"
+          x="33"
+          y="27"
+          width="34"
+          height="50"
+          rx="4"
           fill="url(#androidGrad2)"
         />
-        {/* Status Bar */}
-        <rect
-          x="30"
-          y="28"
-          width="40"
-          height="4"
-          rx="3"
-          fill="rgba(255,255,255,0.2)"
+        {/* Android robot head */}
+        <path
+          d="M 50 34 C 58 34 63 39 63 46 C 63 53 58 58 50 58 C 42 58 37 53 37 46 C 37 39 42 34 50 34 Z"
+          fill="url(#androidGrad)"
+          opacity="0.95"
         />
-        {/* App Icons Grid - Professional */}
-        <rect
-          x="35"
-          y="38"
-          width="8"
-          height="8"
-          rx="1.5"
-          fill="rgba(61,220,132,0.6)"
+        <path
+          d="M 50 34 C 58 34 63 39 63 46 C 63 53 58 58 50 58 C 42 58 37 53 37 46 C 37 39 42 34 50 34 Z"
+          fill="none"
+          stroke="rgba(255,255,255,0.85)"
+          strokeWidth="1.5"
         />
-        <rect
-          x="46"
-          y="38"
-          width="8"
-          height="8"
-          rx="1.5"
-          fill="rgba(61,220,132,0.5)"
+        <line x1="42" y1="36" x2="40" y2="30" stroke="rgba(255,255,255,0.8)" strokeWidth="2" strokeLinecap="round" />
+        <line x1="58" y1="36" x2="60" y2="30" stroke="rgba(255,255,255,0.8)" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="44" cy="45" r="2.5" fill="rgba(255,255,255,0.95)" />
+        <circle cx="56" cy="45" r="2.5" fill="rgba(255,255,255,0.95)" />
+        {/* Code brackets — native app development */}
+        <path
+          d="M 42 66 L 38 68 L 42 70 M 58 66 L 62 68 L 58 70"
+          stroke="rgba(61,220,132,0.9)"
+          strokeWidth="2"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
-        <rect
-          x="57"
-          y="38"
-          width="8"
-          height="8"
-          rx="1.5"
-          fill="rgba(61,220,132,0.4)"
-        />
-        <rect
-          x="35"
-          y="50"
-          width="8"
-          height="8"
-          rx="1.5"
-          fill="rgba(61,220,132,0.5)"
-        />
-        <rect
-          x="46"
-          y="50"
-          width="8"
-          height="8"
-          rx="1.5"
-          fill="rgba(61,220,132,0.4)"
-        />
-        <rect
-          x="57"
-          y="50"
-          width="8"
-          height="8"
-          rx="1.5"
-          fill="rgba(61,220,132,0.3)"
-        />
-        {/* Navigation Bar */}
-        <rect
-          x="30"
-          y="66"
-          width="40"
-          height="4"
-          rx="2"
-          fill="rgba(255,255,255,0.3)"
-        />
+        <rect x="44" y="78" width="12" height="2" rx="1" fill="rgba(255,255,255,0.35)" />
       </svg>
     ),
     "Logo Design": (
       <svg viewBox="0 0 100 100" className="creative-icon">
         <defs>
           <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop
-              offset="0%"
-              style={{ stopColor: "#f59e0b", stopOpacity: 1 }}
-            />
-            <stop
-              offset="100%"
-              style={{ stopColor: "#ef4444", stopOpacity: 1 }}
-            />
-          </linearGradient>
-          <linearGradient id="logoGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop
-              offset="0%"
-              style={{ stopColor: "#667eea", stopOpacity: 0.8 }}
-            />
-            <stop
-              offset="100%"
-              style={{ stopColor: "#764ba2", stopOpacity: 0.8 }}
-            />
+            <stop offset="0%" style={{ stopColor: "#f59e0b", stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: "#ef4444", stopOpacity: 1 }} />
           </linearGradient>
         </defs>
-        {/* Main Logo Mark - Professional */}
-        <circle cx="50" cy="38" r="16" fill="url(#logoGrad)" opacity="0.95" />
-        <circle
-          cx="50"
-          cy="38"
-          r="16"
-          fill="none"
-          stroke="rgba(255,255,255,0.9)"
-          strokeWidth="2"
-        />
-        {/* Letter "L" - Clean Typography */}
+        {/* Vector artboard */}
+        <rect x="18" y="24" width="64" height="52" rx="4" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" strokeDasharray="4 3" />
+        {/* Abstract logo mark — circle + swoosh */}
+        <circle cx="46" cy="46" r="14" fill="url(#logoGrad)" opacity="0.95" stroke="rgba(255,255,255,0.85)" strokeWidth="1.5" />
         <path
-          d="M 42 30 L 42 46 L 58 46"
-          stroke="rgba(255,255,255,0.95)"
+          d="M 52 38 Q 66 38 68 52 Q 66 62 54 58"
+          stroke="rgba(255,255,255,0.9)"
           strokeWidth="3"
           fill="none"
           strokeLinecap="round"
-          strokeLinejoin="round"
         />
-        {/* Brand Identity Elements - Professional */}
-        <rect
-          x="30"
-          y="58"
-          width="40"
-          height="3"
-          rx="1.5"
-          fill="url(#logoGrad2)"
+        {/* Bezier anchor points */}
+        <circle cx="52" cy="38" r="2.5" fill="rgba(255,255,255,0.9)" stroke="url(#logoGrad)" strokeWidth="1" />
+        <circle cx="68" cy="52" r="2.5" fill="rgba(255,255,255,0.9)" stroke="url(#logoGrad)" strokeWidth="1" />
+        <circle cx="54" cy="58" r="2.5" fill="rgba(255,255,255,0.9)" stroke="url(#logoGrad)" strokeWidth="1" />
+        {/* Pen nib — vector design tool */}
+        <path
+          d="M 62 18 L 74 22 L 68 34 L 56 30 Z"
+          fill="rgba(255,255,255,0.95)"
         />
-        <rect
-          x="35"
-          y="66"
-          width="30"
-          height="2.5"
-          rx="1.25"
-          fill="url(#logoGrad2)"
-          opacity="0.8"
-        />
-        <rect
-          x="40"
-          y="73"
-          width="20"
-          height="2"
-          rx="1"
-          fill="url(#logoGrad2)"
-          opacity="0.6"
-        />
+        <path d="M 56 30 L 52 38" stroke="rgba(255,255,255,0.7)" strokeWidth="2" strokeLinecap="round" />
+        <circle cx="51" cy="39" r="2" fill="url(#logoGrad)" />
+        {/* Typography preview line */}
+        <rect x="26" y="68" width="28" height="2.5" rx="1.25" fill="url(#logoGrad)" opacity="0.8" />
+        <rect x="30" y="74" width="20" height="2" rx="1" fill="url(#logoGrad)" opacity="0.5" />
       </svg>
     ),
     "E-commerce Solutions": (
@@ -434,42 +215,68 @@ const getCreativeIcon = (type) => {
               style={{ stopColor: "#059669", stopOpacity: 1 }}
             />
           </linearGradient>
+          <linearGradient id="ecomGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop
+              offset="0%"
+              style={{ stopColor: "#34d399", stopOpacity: 0.5 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: "#10b981", stopOpacity: 0.3 }}
+            />
+          </linearGradient>
         </defs>
-        <rect
-          x="25"
-          y="30"
-          width="50"
-          height="45"
-          rx="4"
+        {/* Store awning */}
+        <path
+          d="M 22 38 L 50 28 L 78 38 L 78 42 L 22 42 Z"
           fill="url(#ecomGrad)"
-          opacity="0.9"
-        />
-        <rect
-          x="25"
-          y="30"
-          width="50"
-          height="45"
-          rx="4"
-          fill="none"
-          stroke="rgba(255,255,255,0.8)"
-          strokeWidth="2"
+          opacity="0.95"
         />
         <path
-          d="M 35 40 L 40 50 L 50 35"
-          stroke="white"
+          d="M 22 38 L 50 28 L 78 38"
+          fill="none"
+          stroke="rgba(255,255,255,0.85)"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
+        />
+        {/* Storefront */}
+        <rect
+          x="24"
+          y="42"
+          width="52"
+          height="36"
+          rx="3"
+          fill="url(#ecomGrad2)"
+          stroke="rgba(255,255,255,0.75)"
+          strokeWidth="1.5"
+        />
+        {/* Shopping cart */}
+        <path
+          d="M 34 58 L 38 58 L 42 68 L 62 68 L 66 58 L 72 58"
+          stroke="url(#ecomGrad)"
           strokeWidth="3"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
-        <circle cx="42" cy="60" r="4" fill="white" opacity="0.9" />
-        <circle cx="58" cy="60" r="4" fill="white" opacity="0.9" />
-        <path
-          d="M 35 45 Q 40 50, 45 45"
-          stroke="white"
-          strokeWidth="2"
-          fill="none"
+        <circle cx="44" cy="72" r="3" fill="rgba(255,255,255,0.9)" />
+        <circle cx="60" cy="72" r="3" fill="rgba(255,255,255,0.9)" />
+        {/* Product box in cart */}
+        <rect
+          x="46"
+          y="60"
+          width="10"
+          height="8"
+          rx="1.5"
+          fill="rgba(255,255,255,0.75)"
         />
+        {/* Price tag */}
+        <path
+          d="M 58 48 L 68 48 L 72 52 L 68 56 L 58 56 Z"
+          fill="url(#ecomGrad)"
+          opacity="0.9"
+        />
+        <circle cx="60" cy="52" r="1.5" fill="rgba(255,255,255,0.9)" />
       </svg>
     ),
     "UI/UX Design": (
@@ -485,88 +292,103 @@ const getCreativeIcon = (type) => {
               style={{ stopColor: "#6366f1", stopOpacity: 1 }}
             />
           </linearGradient>
+          <linearGradient id="uiuxGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop
+              offset="0%"
+              style={{ stopColor: "#a78bfa", stopOpacity: 0.4 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: "#818cf8", stopOpacity: 0.2 }}
+            />
+          </linearGradient>
         </defs>
+        {/* Desktop wireframe — background frame */}
         <rect
-          x="20"
-          y="25"
-          width="60"
-          height="50"
-          rx="6"
+          x="18"
+          y="22"
+          width="58"
+          height="42"
+          rx="5"
+          fill="url(#uiuxGrad2)"
+          stroke="rgba(255,255,255,0.5)"
+          strokeWidth="1.5"
+          strokeDasharray="4 3"
+        />
+        <rect x="24" y="30" width="22" height="3" rx="1.5" fill="rgba(255,255,255,0.45)" />
+        <rect x="24" y="37" width="36" height="2" rx="1" fill="rgba(255,255,255,0.3)" />
+        <rect x="24" y="43" width="28" height="2" rx="1" fill="rgba(255,255,255,0.25)" />
+        <rect x="24" y="52" width="14" height="8" rx="2" fill="rgba(139,92,246,0.35)" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
+        {/* Mobile wireframe — foreground frame */}
+        <rect
+          x="52"
+          y="38"
+          width="30"
+          height="48"
+          rx="5"
           fill="url(#uiuxGrad)"
-          opacity="0.9"
+          opacity="0.95"
         />
         <rect
-          x="28"
-          y="35"
-          width="20"
-          height="3"
-          rx="1.5"
-          fill="white"
-          opacity="0.9"
+          x="52"
+          y="38"
+          width="30"
+          height="48"
+          rx="5"
+          fill="none"
+          stroke="rgba(255,255,255,0.9)"
+          strokeWidth="2"
         />
-        <rect
-          x="28"
-          y="42"
-          width="44"
-          height="2"
-          rx="1"
-          fill="white"
-          opacity="0.7"
-        />
-        <rect
-          x="28"
-          y="48"
-          width="36"
-          height="2"
-          rx="1"
-          fill="white"
-          opacity="0.6"
-        />
-        <circle cx="65" cy="60" r="8" fill="white" opacity="0.3" />
+        <rect x="60" y="42" width="14" height="2" rx="1" fill="rgba(255,255,255,0.35)" />
+        <rect x="57" y="48" width="20" height="2" rx="1" fill="rgba(255,255,255,0.7)" />
+        <rect x="57" y="54" width="16" height="2" rx="1" fill="rgba(255,255,255,0.5)" />
+        <rect x="57" y="60" width="20" height="10" rx="2" fill="rgba(255,255,255,0.25)" />
+        <rect x="57" y="74" width="20" height="4" rx="2" fill="rgba(255,255,255,0.35)" />
+        {/* UX cursor pointer */}
         <path
-          d="M 30 60 L 45 60"
-          stroke="white"
-          strokeWidth="3"
-          strokeLinecap="round"
+          d="M 30 68 L 30 58 L 38 64 Z"
+          fill="rgba(255,255,255,0.95)"
         />
+        <path
+          d="M 38 64 L 46 72 L 42 74 L 36 68 Z"
+          fill="rgba(255,255,255,0.75)"
+        />
+        {/* Flow connector dots */}
+        <circle cx="22" cy="72" r="2.5" fill="url(#uiuxGrad)" />
+        <line x1="24" y1="72" x2="28" y2="66" stroke="rgba(139,92,246,0.7)" strokeWidth="1.5" strokeDasharray="2 2" />
       </svg>
     ),
     "SEO Optimization": (
       <svg viewBox="0 0 100 100" className="creative-icon">
         <defs>
           <linearGradient id="seoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop
-              offset="0%"
-              style={{ stopColor: "#f59e0b", stopOpacity: 1 }}
-            />
-            <stop
-              offset="100%"
-              style={{ stopColor: "#d97706", stopOpacity: 1 }}
-            />
+            <stop offset="0%" style={{ stopColor: "#f59e0b", stopOpacity: 1 }} />
+            <stop offset="100%" style={{ stopColor: "#d97706", stopOpacity: 1 }} />
           </linearGradient>
         </defs>
-        <circle
-          cx="45"
-          cy="40"
-          r="18"
-          fill="none"
-          stroke="url(#seoGrad)"
-          strokeWidth="4"
-        />
+        {/* Ranking bar chart — search visibility growth */}
+        <rect x="20" y="58" width="10" height="18" rx="2" fill="url(#seoGrad)" opacity="0.45" />
+        <rect x="34" y="48" width="10" height="28" rx="2" fill="url(#seoGrad)" opacity="0.65" />
+        <rect x="48" y="36" width="10" height="40" rx="2" fill="url(#seoGrad)" opacity="0.85" />
+        {/* Upward trend arrow */}
         <path
-          d="M 58 53 L 70 65"
-          stroke="url(#seoGrad)"
-          strokeWidth="5"
-          strokeLinecap="round"
-        />
-        <path
-          d="M 35 35 L 42 42 L 52 28"
-          stroke="url(#seoGrad)"
-          strokeWidth="3"
+          d="M 58 56 L 74 32 M 74 32 L 69 32 M 74 32 L 74 37"
           fill="none"
+          stroke="rgba(255,255,255,0.85)"
+          strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
+        {/* Magnifying glass — search */}
+        <circle cx="42" cy="42" r="16" fill="none" stroke="url(#seoGrad)" strokeWidth="3.5" />
+        <path d="M 54 54 L 66 66" stroke="url(#seoGrad)" strokeWidth="4" strokeLinecap="round" />
+        {/* Search result lines inside lens */}
+        <rect x="32" y="38" width="16" height="2" rx="1" fill="rgba(255,255,255,0.7)" />
+        <rect x="32" y="43" width="12" height="2" rx="1" fill="rgba(255,255,255,0.5)" />
+        <rect x="32" y="48" width="14" height="2" rx="1" fill="rgba(255,255,255,0.4)" />
+        {/* #1 rank badge */}
+        <circle cx="76" cy="28" r="8" fill="url(#seoGrad)" />
+        <text x="76" y="31.5" textAnchor="middle" fill="white" fontSize="8" fontWeight="bold" fontFamily="sans-serif">1</text>
       </svg>
     ),
     "Brand Strategy": (
@@ -582,20 +404,246 @@ const getCreativeIcon = (type) => {
               style={{ stopColor: "#be185d", stopOpacity: 1 }}
             />
           </linearGradient>
+          <linearGradient id="brandGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop
+              offset="0%"
+              style={{ stopColor: "#f472b6", stopOpacity: 0.5 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: "#ec4899", stopOpacity: 0.3 }}
+            />
+          </linearGradient>
         </defs>
-        <polygon
-          points="50,25 70,40 65,65 35,65 30,40"
-          fill="url(#brandGrad)"
+        {/* Strategy target — brand positioning bullseye */}
+        <circle
+          cx="50"
+          cy="46"
+          r="28"
+          fill="none"
+          stroke="url(#brandGrad)"
+          strokeWidth="2.5"
+          opacity="0.45"
+        />
+        <circle
+          cx="50"
+          cy="46"
+          r="20"
+          fill="none"
+          stroke="url(#brandGrad)"
+          strokeWidth="2.5"
+          opacity="0.65"
+        />
+        <circle
+          cx="50"
+          cy="46"
+          r="12"
+          fill="url(#brandGrad2)"
+          stroke="url(#brandGrad)"
+          strokeWidth="2"
           opacity="0.9"
         />
-        <circle cx="50" cy="45" r="12" fill="white" opacity="0.3" />
+        <circle cx="50" cy="46" r="5" fill="url(#brandGrad)" />
+        {/* Arrow — strategic direction */}
         <path
-          d="M 45 45 L 50 50 L 60 35"
-          stroke="white"
-          strokeWidth="3"
+          d="M 50 18 L 50 30 M 50 18 L 46 24 M 50 18 L 54 24"
+          stroke="rgba(255,255,255,0.9)"
+          strokeWidth="2.5"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"
+        />
+        {/* Brand identity layers */}
+        <rect
+          x="22"
+          y="72"
+          width="56"
+          height="3"
+          rx="1.5"
+          fill="url(#brandGrad)"
+          opacity="0.85"
+        />
+        <rect
+          x="28"
+          y="79"
+          width="44"
+          height="2.5"
+          rx="1.25"
+          fill="url(#brandGrad)"
+          opacity="0.6"
+        />
+        <rect
+          x="34"
+          y="85"
+          width="32"
+          height="2"
+          rx="1"
+          fill="url(#brandGrad)"
+          opacity="0.4"
+        />
+        {/* Compass points — market strategy */}
+        <path
+          d="M 22 46 L 28 46 M 72 46 L 78 46"
+          stroke="rgba(255,255,255,0.35)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+    "Product Development": (
+      <svg viewBox="0 0 100 100" className="creative-icon">
+        <defs>
+          <linearGradient
+            id="productDevGrad"
+            x1="0%"
+            y1="0%"
+            x2="100%"
+            y2="100%"
+          >
+            <stop
+              offset="0%"
+              style={{ stopColor: "#0ea5e9", stopOpacity: 1 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: "#6366f1", stopOpacity: 1 }}
+            />
+          </linearGradient>
+          <linearGradient
+            id="productDevGrad2"
+            x1="0%"
+            y1="100%"
+            x2="100%"
+            y2="0%"
+          >
+            <stop
+              offset="0%"
+              style={{ stopColor: "#38bdf8", stopOpacity: 0.5 }}
+            />
+            <stop
+              offset="100%"
+              style={{ stopColor: "#818cf8", stopOpacity: 0.5 }}
+            />
+          </linearGradient>
+        </defs>
+        {/* Product layers - MVP to launch stages */}
+        <rect
+          x="22"
+          y="58"
+          width="56"
+          height="18"
+          rx="4"
+          fill="url(#productDevGrad2)"
+          opacity="0.85"
+        />
+        <rect
+          x="22"
+          y="58"
+          width="56"
+          height="18"
+          rx="4"
+          fill="none"
+          stroke="rgba(255,255,255,0.5)"
+          strokeWidth="1.5"
+        />
+        <rect
+          x="28"
+          y="44"
+          width="44"
+          height="16"
+          rx="3"
+          fill="url(#productDevGrad2)"
+          opacity="0.7"
+        />
+        <rect
+          x="28"
+          y="44"
+          width="44"
+          height="16"
+          rx="3"
+          fill="none"
+          stroke="rgba(255,255,255,0.6)"
+          strokeWidth="1.5"
+        />
+        <rect
+          x="34"
+          y="32"
+          width="32"
+          height="14"
+          rx="3"
+          fill="url(#productDevGrad)"
+          opacity="0.95"
+        />
+        <rect
+          x="34"
+          y="32"
+          width="32"
+          height="14"
+          rx="3"
+          fill="none"
+          stroke="rgba(255,255,255,0.9)"
+          strokeWidth="1.5"
+        />
+        {/* Launch rocket */}
+        <path
+          d="M 50 14 L 56 28 L 50 26 L 44 28 Z"
+          fill="url(#productDevGrad)"
+          opacity="0.95"
+        />
+        <path
+          d="M 50 14 L 56 28 L 50 26 L 44 28 Z"
+          fill="none"
+          stroke="rgba(255,255,255,0.9)"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
+        />
+        <circle cx="50" cy="20" r="2.5" fill="rgba(255,255,255,0.9)" />
+        {/* Launch trail */}
+        <path
+          d="M 46 28 Q 50 34, 54 28"
+          stroke="rgba(255,255,255,0.5)"
+          strokeWidth="2"
+          fill="none"
+          strokeLinecap="round"
+        />
+        <path
+          d="M 48 30 L 46 36 M 52 30 L 54 36"
+          stroke="rgba(255,255,255,0.4)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+        {/* Product feature lines */}
+        <rect
+          x="38"
+          y="37"
+          width="10"
+          height="2"
+          rx="1"
+          fill="rgba(255,255,255,0.7)"
+        />
+        <rect
+          x="52"
+          y="37"
+          width="8"
+          height="2"
+          rx="1"
+          fill="rgba(255,255,255,0.5)"
+        />
+        <rect
+          x="34"
+          y="49"
+          width="14"
+          height="2"
+          rx="1"
+          fill="rgba(255,255,255,0.6)"
+        />
+        <rect
+          x="52"
+          y="49"
+          width="12"
+          height="2"
+          rx="1"
+          fill="rgba(255,255,255,0.4)"
         />
       </svg>
     ),
@@ -728,6 +776,14 @@ const Services = () => {
     },
     {
       link: "#",
+      text: "Product Development",
+      imageType: "productdev",
+      description:
+        "We transform innovative ideas into scalable digital products, from MVP development to full product launch.",
+      category: "Development",
+    },
+    {
+      link: "#",
       text: "Logo Design",
       imageType: "logo",
       description:
@@ -777,7 +833,7 @@ const Services = () => {
       id: 2,
       question: "How fast can we deliver?",
       answer:
-        "Websites: 7-14 days, Android Apps: 3-6 weeks, Logos: 2-3 days. We balance speed and quality for exceptional results.",
+        "Websites: 6-8 weeks, Android Apps: 3-6 months, Logos: 2-3 days. We balance speed and quality for exceptional results.",
     },
     {
       id: 3,
@@ -801,7 +857,13 @@ const Services = () => {
 
   return (
     <>
-      {/* Header */}
+          <SEO
+        title="Services | Website Design, App Development & UI/UX | Nexlume"
+        description="Explore Nexlume services including website development, mobile app development, UI/UX design, branding, SEO optimization, and software development."
+        canonical="/services"
+        keywords="website development services, app development services, UI UX design services, SEO services, software development"
+      />
+            {/* Header */}
       <div className="full-screen-container">
         <div className="header">
           <div className="services-style-head">
@@ -820,8 +882,7 @@ const Services = () => {
             At Nexlume, we pride ourselves on our commitment to <br />
             <span className="highlight">
               Excellence, Creativity, and Timely delivery
-            </span>
-            <br />
+            </span>{" "}
             Let us help you build a strong online presence that sets your brand
             apart.
           </p>
@@ -887,13 +948,8 @@ const Services = () => {
 
         {/* Service Cards Grid */}
         <div className="services-grid">
-          {filteredServices.map((item, index) => (
-            <div
-              className="service-card"
-              key={index}
-              data-aos="fade-up"
-              data-aos-delay={index * 50}
-            >
+          {filteredServices.map((item) => (
+            <div className="service-card" key={item.text}>
               <div className="service-card-inner">
                 <div className="service-icon-wrapper">
                   <div className="service-icon">
@@ -1042,7 +1098,7 @@ const Services = () => {
             >
               <div className="process-number">01</div>
               <div className="process-content">
-                <div className="process-icon">
+                {/* <div className="process-icon">
                   <svg viewBox="0 0 64 64" fill="none">
                     <circle
                       cx="32"
@@ -1059,7 +1115,7 @@ const Services = () => {
                       strokeLinecap="round"
                     />
                   </svg>
-                </div>
+                </div> */}
                 <h3>Discovery & Planning</h3>
                 <p>
                   We dive deep into your business goals, target audience, and
@@ -1076,7 +1132,7 @@ const Services = () => {
             >
               <div className="process-number">02</div>
               <div className="process-content">
-                <div className="process-icon">
+                {/* <div className="process-icon">
                   <svg viewBox="0 0 64 64" fill="none">
                     <rect
                       x="12"
@@ -1095,7 +1151,7 @@ const Services = () => {
                       strokeLinecap="round"
                     />
                   </svg>
-                </div>
+                </div> */}
                 <h3>Design & Prototype</h3>
                 <p>
                   Our designers craft intuitive, beautiful interfaces with
@@ -1112,7 +1168,7 @@ const Services = () => {
             >
               <div className="process-number">03</div>
               <div className="process-content">
-                <div className="process-icon">
+                {/* <div className="process-icon">
                   <svg viewBox="0 0 64 64" fill="none">
                     <circle
                       cx="32"
@@ -1130,7 +1186,7 @@ const Services = () => {
                       strokeLinejoin="round"
                     />
                   </svg>
-                </div>
+                </div> */}
                 <h3>Development & Testing</h3>
                 <p>
                   Expert developers build your solution with clean code,
@@ -1147,7 +1203,7 @@ const Services = () => {
             >
               <div className="process-number">04</div>
               <div className="process-content">
-                <div className="process-icon">
+                {/* <div className="process-icon">
                   <svg viewBox="0 0 64 64" fill="none">
                     <path
                       d="M32 8l8 16h16l-13 13 5 15-16-10-16 10 5-15-13-13h16z"
@@ -1156,7 +1212,7 @@ const Services = () => {
                       fill="none"
                     />
                   </svg>
-                </div>
+                </div> */}
                 <h3>Launch & Support</h3>
                 <p>
                   Seamless deployment to production with ongoing maintenance,
@@ -1196,38 +1252,19 @@ const Services = () => {
             >
               <h3 className="tech-category-title">Frontend</h3>
               <div className="tech-grid">
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                    </svg>
+                {[
+                  { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+                  { name: "Vue.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+                  { name: "Next.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+                  { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+                ].map((tech) => (
+                  <div className="tech-item" key={tech.name}>
+                    <div className="tech-icon-box">
+                      <img src={tech.logo} alt={tech.name} width="32" height="32" loading="lazy" />
+                    </div>
+                    <span>{tech.name}</span>
                   </div>
-                  <span>React</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l10 6v10l-10 6-10-6V8l10-6z" />
-                    </svg>
-                  </div>
-                  <span>Vue.js</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2L2 7l10 5 10-5-10-5z" />
-                    </svg>
-                  </div>
-                  <span>Next.js</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2L2 7l10 5 10-5z" />
-                    </svg>
-                  </div>
-                  <span>TypeScript</span>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -1236,41 +1273,22 @@ const Services = () => {
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              <h3 className="tech-category-title">Backend</h3>
-              <div className="tech-grid">
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l10 6v10l-10 6-10-6V8z" />
-                    </svg>
-                  </div>
-                  <span>Node.js</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <circle cx="12" cy="12" r="10" />
-                    </svg>
-                  </div>
-                  <span>Python</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <rect x="4" y="4" width="16" height="16" rx="2" />
-                    </svg>
-                  </div>
-                  <span>MongoDB</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2L2 7v10l10 5 10-5V7z" />
-                    </svg>
-                  </div>
-                  <span>PostgreSQL</span>
-                </div>
-              </div>
+                      <h3 className="tech-category-title">Backend</h3>
+                      <div className="tech-grid">
+                        {[
+                          { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+                          { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+                          { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+                          { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+                        ].map((tech) => (
+                          <div className="tech-item" key={tech.name}>
+                            <div className="tech-icon-box">
+                              <img src={tech.logo} alt={tech.name} width="32" height="32" loading="lazy" />
+                            </div>
+                            <span>{tech.name}</span>
+                          </div>
+                        ))}
+                      </div>
             </div>
 
             <div
@@ -1278,41 +1296,22 @@ const Services = () => {
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              <h3 className="tech-category-title">Cloud & DevOps</h3>
-              <div className="tech-grid">
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l10 6v10l-10 6-10-6V8z" />
-                    </svg>
-                  </div>
-                  <span>AWS</span>
+                <h3 className="tech-category-title">Cloud & DevOps</h3>
+                <div className="tech-grid">
+                  {[
+                    { name: "AWS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+                    { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+                    { name: "Firebase", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+                    { name: "Vercel", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" },
+                  ].map((tech) => (
+                    <div className="tech-item" key={tech.name}>
+                      <div className="tech-icon-box">
+                        <img src={tech.logo} alt={tech.name} width="32" height="32" loading="lazy" />
+                      </div>
+                      <span>{tech.name}</span>
+                    </div>
+                  ))}
                 </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <circle cx="12" cy="12" r="10" />
-                    </svg>
-                  </div>
-                  <span>Docker</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <rect x="4" y="4" width="16" height="16" rx="2" />
-                    </svg>
-                  </div>
-                  <span>Firebase</span>
-                </div>
-                <div className="tech-item">
-                  <div className="tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2L2 7l10 5 10-5z" />
-                    </svg>
-                  </div>
-                  <span>Vercel</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useMemo } from "react";
 import { ArrowRight, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import profileImage from "../../../assets/Team/aman.jpg";
+// import profileImage from "../../../assets/Team/aman.jpg";
 import "./Hero.css";
 
 export default function Hero() {
@@ -37,7 +37,7 @@ export default function Hero() {
 
   return (
     <section
-      className="hero-section position-relative min-vh-100 d-flex align-items-center justify-content-center overflow-hidden"
+    className="hero-section position-relative min-vh-100 d-flex align-items-center justify-content-center"
       aria-label="Hero section"
     >
       {/* Starry Background */}
@@ -63,7 +63,7 @@ export default function Hero() {
                 >
                   Coming Soon
                 </span>
-                <span className="banner-text">Nextnode is launching soon!</span>
+                <span className="banner-text">Sanchay is launching soon!</span>
                 <ArrowRight
                   size={16}
                   className="banner-arrow"

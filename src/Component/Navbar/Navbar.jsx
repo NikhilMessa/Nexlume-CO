@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { NavLink, Link } from "react-router-dom";import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./Navbar.css";
 
 import logoImage from "../../assets/logo.png"; // Import the logo image
 import { OptimizedImage } from "../../components/OptimizedImage";
 import { prefetchTeam } from "../../lib/teamCache";
+
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,42 +40,43 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="desktop-nav d-none d-lg-flex">
             {/* Left links */}
-            <div className="nav-left">
-              <Link className="nav-link" to="/projects">
+           <div className="nav-left">
+              <NavLink className={({ isActive }) => `nav-link${isActive ? " active" : ""}`} to="/projects">
                 PROJECTS
-              </Link>
-              <Link className="nav-link" to="/services">
+              </NavLink>
+              <NavLink className={({ isActive }) => `nav-link${isActive ? " active" : ""}`} to="/services">
                 SERVICES
-              </Link>
+              </NavLink>
             </div>
 
             {/* Center logo */}
             <div className="nav-center">
               <Link to="/" className="navbar-brand">
                 <OptimizedImage
-                  src={logoImage}
-                  alt="NEXLUME Logo"
-                  className="logo-img"
-                  priority
-                  generateSources={false}
-                />
+                      src={logoImage}
+                      alt="NEXLUME Logo"
+                      className="logo-img"
+                      priority
+                     fetchPriority="high"
+                      generateSources={false}
+                    />
               </Link>
             </div>
 
             {/* Right links */}
             <div className="nav-right">
-              <Link
-                className="nav-link"
-                to="/team"
-                onMouseEnter={prefetchTeam}
-                onTouchStart={prefetchTeam}
-              >
-                TEAM
-              </Link>
-              <Link className="nav-link" to="/contact">
-                CONTACT
-              </Link>
-            </div>
+                    <NavLink
+                      className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}
+                      to="/team"
+                      onMouseEnter={prefetchTeam}
+                      onTouchStart={prefetchTeam}
+                    >
+                      TEAM
+                    </NavLink>
+                    <NavLink className={({ isActive }) => `nav-link${isActive ? " active" : ""}`} to="/contact">
+                      CONTACT
+                    </NavLink>
+                  </div>
           </div>
 
           {/* Mobile view */}

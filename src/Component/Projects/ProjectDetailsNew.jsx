@@ -1,32 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { OptimizedImage } from "../../components/OptimizedImage";
 import "./ProjectDetailsNew.css";
 
 const API_BASE = import.meta.env?.VITE_API_BASE || "http://localhost:5000";
 
-const waitForImageLoad = (src, timeout = 15000) =>
-  new Promise((resolve) => {
-    if (!src) {
-      resolve(true);
-      return;
-    }
+// ✅ REMOVED: waitForImageLoad — was blocking skeleton for up to 15s
 
-    const img = new Image();
-    let settled = false;
-
-    const finish = (ok) => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(timer);
-      resolve(ok);
-    };
-
-    const timer = setTimeout(() => finish(false), timeout);
-    img.onload = () => finish(true);
-    img.onerror = () => finish(false);
-    img.src = src;
-  });
+const optimizeCloudinaryUrl = (url) => {
+  if (!url || !url.includes("res.cloudinary.com")) return url;
+  return url.replace("/upload/", "/upload/w_800,f_auto,q_auto/");
+};
 
 const normalizeProject = (data) => {
   if (!data) return null;
@@ -158,6 +142,15 @@ const DATABASE_MATCH = [
   "supabase",
   "database",
 ];
+
+// ✅ ADDED: dynamic tech label instead of hardcoded "Framework"
+const getTechLabel = (tech) => {
+  const lower = tech.toLowerCase();
+  if (FRONTEND_MATCH.some((k) => lower.includes(k))) return "Frontend";
+  if (BACKEND_MATCH.some((k) => lower.includes(k))) return "Backend";
+  if (DATABASE_MATCH.some((k) => lower.includes(k))) return "Database";
+  return "Technology";
+};
 
 const fallbackByTab = {
   [TAB_KEYS.FRONTEND]: ["React", "Bootstrap", "HTML5", "JavaScript"],
@@ -392,9 +385,13 @@ const ProjectDetailsSkeleton = () => (
 export default function ProjectDetailsNew() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation(); // ✅ ADDED
 
-  const [project, setProject] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // ✅ ADDED: use cached state from navigation immediately — skips skeleton
+  const [project, setProject] = useState(
+    location.state ? normalizeProject(location.state) : null,
+  );
+  const [loading, setLoading] = useState(!location.state);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState(TAB_KEYS.FRONTEND);
   const [activeDecision, setActiveDecision] = useState(DEFAULT_DECISIONS[0].id);
@@ -413,18 +410,11 @@ export default function ProjectDetailsNew() {
         const data = await res.json();
         const normalized = normalizeProject(data);
         setProject(normalized);
-
-        const previewImage =
-          normalized?.image || normalized?.screenshots?.[0] || "";
-        const imageLoaded = await waitForImageLoad(previewImage);
-
-        if (!imageLoaded) {
-          console.warn("Project preview image is not loaded yet.");
-        }
+        // ✅ REMOVED: waitForImageLoad lines — no longer blocking here
       } catch (err) {
         setError(err.message);
       } finally {
-        setLoading(false);
+        setLoading(false); // ✅ show content immediately after API responds
       }
     };
 
@@ -479,7 +469,10 @@ export default function ProjectDetailsNew() {
     );
   }
 
-  const previewImage = project.image || project.screenshots?.[0] || "";
+  // ✅ ADDED: optimize Cloudinary image URL for mobile (2.1MB → ~150KB)
+  const previewImage = optimizeCloudinaryUrl(
+    project.image || project.screenshots?.[0] || "",
+  );
 
   return (
     <div className="pdx-page">
@@ -612,6 +605,7 @@ export default function ProjectDetailsNew() {
             ))}
           </div>
 
+          {/* ✅ HIDDEN on mobile via CSS — was causing duplicate cards */}
           <div className="pdx-journey-mini-grid">
             {mappedContent.journey.map((item) => (
               <article key={`mini-${item.id}`} className="pdx-mini-card">
@@ -662,11 +656,13 @@ export default function ProjectDetailsNew() {
               <div key={`${activeTab}-${tech}`} className="pdx-tech-row">
                 <span className="pdx-tech-dot" />
                 <span className="pdx-tech-name">{tech}</span>
-                <span className="pdx-tech-tag">Framework</span>
+                {/* ✅ FIXED: dynamic label instead of hardcoded "Framework" */}
+                <span className="pdx-tech-tag">{getTechLabel(tech)}</span>
               </div>
             ))}
           </div>
 
+          {/* ✅ HIDDEN on mobile via CSS — was causing duplicate tech cards */}
           <div className="pdx-tech-mini-grid">
             {techGroups[activeTab].slice(0, 6).map((tech) => (
               <article key={`mini-tech-${tech}`} className="pdx-mini-tech-card">

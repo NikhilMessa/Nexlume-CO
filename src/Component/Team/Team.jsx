@@ -5,6 +5,7 @@ import "./Team.css";
 import { Link } from "react-router-dom";
 import { FaLinkedin } from "react-icons/fa";
 import API from "../../lib/api";
+import SEO from "../SEO/SEO";
 import {
   prefetchTeam,
   resolveMemberImage,
@@ -15,24 +16,20 @@ import TeamEmailImage from "../../assets/Team/team-email.jpg";
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 
-const TeamMemberCard = ({ member }) => {
+const TeamMemberCard = ({ member, priority = false }) => {
   return (
-    <div className="team-card">
+     <div className="team-card">
       <div className="team-card-inner">
         <div className="team-image-wrapper">
           <OptimizedImage
             src={resolveMemberImage(member.image)}
             alt={member.title}
             className="team-image"
-            generateSources={false}
-            priority
-            style={{
-              "--team-image-position": member.imagePosition || "center 30%",
-            }}
+            priority={priority}
+            style={{ "--team-image-position": member.imagePosition || "center 30%" }}
           />
           <div className="team-image-overlay"></div>
         </div>
-
         <div className="team-content">
           <div className="team-header">
             <h3 className="team-name">{member.title}</h3>
@@ -163,6 +160,12 @@ const Team = () => {
 
   return (
     <>
+          <SEO
+        title="Team | Meet Nexlume Developers & Designers"
+        description="Meet the Nexlume team of developers, designers, product thinkers, and creators building websites, apps, and digital products."
+        canonical="/team"
+        keywords="Nexlume team, web development team, app development team, UI UX designers"
+      />
       <section id="team" className="team-body">
         <div className="team-hero">
           <div className="team-hero-badge">Our Team</div>
@@ -202,6 +205,7 @@ const Team = () => {
                   <TeamMemberCard
                     key={member._id || index}
                     member={member}
+                    priority={index < 2}
                   />
                 ))}
           </div>

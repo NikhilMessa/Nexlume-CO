@@ -1,0 +1,5 @@
+User-agent: *
+
+Allow: /
+
+Sitemap: https://nexlume-dev.netlify.app/sitemap.xml

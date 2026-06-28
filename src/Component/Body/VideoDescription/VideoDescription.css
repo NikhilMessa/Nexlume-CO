@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100vh;
+   min-height: auto;
   padding-top: 60px;
   text-align: center;
   overflow: hidden;
@@ -90,6 +90,7 @@
 @media (min-width: 993px) and (max-width: 1199px) {
   .video-description {
     padding-top: 50px;
+     min-height: auto;
   }
 
   .main-desc {
@@ -111,6 +112,7 @@
 @media (min-width: 769px) and (max-width: 992px) {
   .video-description {
     padding-top: 40px;
+     min-height: auto;
   }
 
   .main-desc {
@@ -126,7 +128,7 @@
     width: 88%;
     height: 70vh;
     margin-top: 30px;
-    margin-bottom: 35px;
+     margin-bottom: 5px; /* ← changed from 35px */
   }
 
   .background-video {
@@ -138,6 +140,7 @@
 @media (min-width: 577px) and (max-width: 768px) {
   .video-description {
     padding-top: 35px;
+     min-height: auto;
   }
 
   .main-desc {
@@ -154,7 +157,7 @@
     width: 90%;
     height: 60vh;
     margin-top: 25px;
-    margin-bottom: 30px;
+    margin-bottom: 5px; /* ← changed from 30px */
     padding: 0 15px;
   }
 
@@ -167,6 +170,7 @@
 @media (min-width: 481px) and (max-width: 576px) {
   .video-description {
     padding-top: 30px;
+      min-height: auto;
   }
 
   .main-desc {
@@ -183,7 +187,7 @@
     width: 92%;
     height: 50vh;
     margin-top: 20px;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
     padding: 0 10px;
   }
 
@@ -196,6 +200,7 @@
 @media (max-width: 480px) {
   .video-description {
     padding-top: 25px;
+      min-height: auto;
   }
 
   .main-desc {
@@ -227,6 +232,7 @@
 @media (max-width: 319px) {
   .video-description {
     padding-top: 20px;
+      min-height: auto;
   }
 
   .main-desc p {
@@ -238,7 +244,7 @@
     width: 95%;
     height: 40vh;
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
   }
 
   .background-video {
@@ -250,6 +256,7 @@
 @media (max-height: 500px) and (orientation: landscape) {
   .video-description {
     padding-top: 20px;
+      min-height: auto;
   }
 
   .main-desc p {
